@@ -1,0 +1,94 @@
+.program ph0
+
+.side_set 2
+
+
+.wrap_target
+mov y, osr side 0
+aaa:
+jmp y-- aaa side 0 [7] 
+
+mov y, osr side 0
+aab:
+mov y,y side 1 [3]
+jmp y-- aab side 0 [4] 
+
+mov y, osr side 0
+aac:
+mov y,y side 1 [6]
+jmp y-- aac side 0 
+
+mov y, osr side 0
+aad:
+jmp y-- aad side 1 [7]
+
+mov y, osr side 0
+aae:
+mov y,y side 1 [6]
+jmp y-- aae side 0 
+
+mov y, osr side 0
+aaf:
+mov y,y side 1 [3]
+jmp y-- aaf side 0  [4]
+
+mov y, osr side 0
+aba:
+jmp y-- aba side 0 [7] 
+
+mov y, osr side 0
+abb:
+mov y,y side 1 [3]
+jmp y-- abb side 0 [4] 
+
+mov y, osr side 0
+abc:
+mov y,y side 1 [6]
+jmp y-- abc side 0 
+
+mov y, osr side 0
+abd:
+jmp y-- abd side 1 [7]
+
+mov y, osr side 0
+abe:
+mov y,y side 1 [6]
+jmp y-- abe side 0 
+
+mov y, osr side 0
+abf:
+mov y,y side 1 [3]
+jmp y-- abf side 0  [4]
+.wrap
+
+% c-sdk {
+
+// Helper function (for use in C program) to initialize this PIO program
+void ph0_program_init(PIO pio, uint sm, uint offset, float div, uint pin) {
+
+    // Sets up state machine and wrap target. This function is automatically
+
+    pio_sm_config c = ph0_program_get_default_config(offset);
+ 
+
+    sm_config_set_sideset(&c,2,false,false);
+    sm_config_set_sideset_pins(&c,pin);
+    sm_config_set_in_shift(&c,false,false,32);
+    sm_config_set_out_shift(&c,true,true,32);
+
+    sm_config_set_jmp_pin(&c, 2);
+    
+    // Set the clock divider for the state machine
+    sm_config_set_clkdiv(&c, div);
+    
+
+    // Load configuration and jump to start of the program
+    pio_sm_init(pio, sm, offset, &c);
+    
+}
+
+%}
+
+
+
+

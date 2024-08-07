@@ -1,16 +1,17 @@
-.program spe2
+.program ph2
 
 MOV x ! NULL
-WAIT 0 gpio 3
-WAIT 1 gpio 3
+WAIT 0 gpio 2
+WAIT 1 gpio 2
 
 .wrap_target
 MOV x ! NULL
+Lloop:
+JMP PIN    Hloop
+JMP x--  Lloop
 Hloop:
 JMP PIN, cnt
-Lloop:
-JMP PIN    rst
-JMP x--  Lloop
+JMP rst
 cnt:
 JMP x--  Hloop
 
@@ -24,15 +25,16 @@ PUSH noblock
 % c-sdk {
 
 // Helper function (for use in C program) to initialize this PIO program
-void spe2_program_init(PIO pio, uint sm, uint offset, float div) {
+void ph2_program_init(PIO pio, uint sm, uint offset, float div, uint pin) {
 
     // Sets up state machine and wrap target. This function is automatically
 
-    pio_sm_config c = spe2_program_get_default_config(offset);
+    pio_sm_config c = ph2_program_get_default_config(offset);
     sm_config_set_fifo_join (&c, 2);
+     sm_config_set_set_pins(&c,pin,2);
 
 
-    sm_config_set_jmp_pin(&c, 3);
+    sm_config_set_jmp_pin(&c, 2);
     
     // Set the clock divider for the state machine
     sm_config_set_clkdiv(&c, div);

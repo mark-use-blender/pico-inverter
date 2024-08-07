@@ -46,10 +46,11 @@ static inline pio_sm_config ph2_program_get_default_config(uint offset) {
 }
 
 // Helper function (for use in C program) to initialize this PIO program
-void ph2_program_init(PIO pio, uint sm, uint offset, float div) {
+void ph2_program_init(PIO pio, uint sm, uint offset, float div, uint pin) {
     // Sets up state machine and wrap target. This function is automatically
     pio_sm_config c = ph2_program_get_default_config(offset);
     sm_config_set_fifo_join (&c, 2);
+     sm_config_set_set_pins(&c,pin,2);
     sm_config_set_jmp_pin(&c, 2);
     // Set the clock divider for the state machine
     sm_config_set_clkdiv(&c, div);

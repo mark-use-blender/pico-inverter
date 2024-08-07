@@ -13,19 +13,19 @@ add_executable(pico-invrerter
   main.c
 )
 pico_generate_pio_header(pico-invrerter
-        ./../off1.pio
+        ./../ph0.pio
         
 )
 pico_generate_pio_header(pico-invrerter
-        ./../off2.pio
+        ./../ph1.pio
         
 )
 pico_generate_pio_header(pico-invrerter
-        ./../spe1.pio
+        ./../ph2.pio
         
 )
 pico_generate_pio_header(pico-invrerter
-        ./../spe2.pio
+        ./../ui.pio
         
 )
 
