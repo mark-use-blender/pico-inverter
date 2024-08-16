@@ -39,6 +39,7 @@ target_link_libraries(
   hardware_pwm 
   hardware_uart 
   hardware_flash 
+  hardware_dma
   hardware_sync 
   hardware_timer
   hardware_irq

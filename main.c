@@ -35,6 +35,7 @@ tab
 #include "hardware/pio.h"
 #include "hardware/clocks.h"
 #include "hardware/irq.h"
+#include "hardware/dma.h"
 #include "ph0.pio.h"
 #include "ph1.pio.h"
 #include "ph2.pio.h"
@@ -42,28 +43,35 @@ tab
 #include "src/pico_servo.h"
 
 #define PI 3.14
-#define sindev 18
-#define tdev 16
+#define sindev 32
+#define tdev 6
 #define sft_tab 4
-float cldiv = 1;
+int cldiv = 1;
 int feq = 1;
 int phoff ;
-uint32_t s_tab;
+uint32_t *s_tab[32] __attribute__((aligned(2*sizeof(uint32_t *))));
+uint32_t rs_tab[32] __attribute__((aligned(2*sizeof(uint32_t *))));
+
 int phpin0 = 2;
 int phpin1 = 4;
 int phpin2 = 6;
 int rotpin = 8;
 void iniclkpram()
 {
-    s_tab = 0;
-    for (int i=1;i<sindev/2;i++)
+    s_tab;
+    cldiv = (int)nearbyint(125000000/feq/sindev/(1<<tdev));
+    phoff = sindev/3;
+    for (int i=0;i<sindev;i++)
     {
-        s_tab = s_tab<<sft_tab;
-        s_tab = s_tab|(uint32_t)nearbyint(sinf(PI*i/sindev/2)*tdev);
+        uint32_t tmp = (uint32_t)abs(((int)nearbyint(sinf(PI*i*2/sindev)*(1<<tdev))));
+        s_tab[i] = &rs_tab[i];
+        rs_tab[i] =  (uint32_t)cldiv|
+                    (uint32_t)(((1<<tdev)-tmp)<<16)|
+                    (uint32_t)(((tmp<<1)|(i>>4))<<24);
+        //printf("%32b\n",*s_tab[i]);
     }
-    cldiv = fmaxf(1.0,(125000000/sindev/tdev/2/feq));
-    phoff = sindev*2/3;
     return;
+  
 }
 
 
@@ -84,21 +92,35 @@ int main()
     // Add PIO program to PIO instruction memory. SDK will find location and
     // return with the memory offset of the program.
     uint offset1 = pio_add_program(pio00, &ph0_program);
-    uint offset2 = pio_add_program(pio00, &ph1_program);
-    uint offset3 = pio_add_program(pio01, &ph2_program);
+    uint offset2 = pio_add_program(pio00, &ph0_program);
+    uint offset3 = pio_add_program(pio01, &ph0_program);
     uint offset4 = pio_add_program(pio01, &ui_program);
     // Initialize the program using the helper function in our .pio file
-    ph0_program_init(pio00, sm1, offset1, cldiv,phpin2);
-    ui_program_init(pio01, sm4, offset4, 1,rotpin);
+    ui_program_init(pio01, sm4, offset4, 1 ,rotpin);
     // Start running our PIO program in the state machine
     // pio_sm_set_enabled(pio00, sm1, true);
     // pio_sm_set_enabled(pio00, sm2, true);
     // pio_sm_set_enabled(pio01, sm3, true);
     pio_sm_set_enabled(pio01, sm4, true);
-    ph0_program_init(pio00, sm2, offset2, cldiv, phpin0);
-    ph1_program_init(pio00, sm2, offset2, cldiv, phpin1);
-    ph2_program_init(pio01, sm3, offset3, cldiv, phpin2);
+    ph0_program_init(pio00, sm1, offset1, 1, phpin0);
+    ph1_program_init(pio00, sm2, offset2, 1, phpin1);
+    ph2_program_init(pio01, sm3, offset3, 1, phpin2);
+    //////////////////////
+    uint ph0_dma_chan = dma_claim_unused_channel(true);
 
+    dma_channel_config ph0_dma_cfg = dma_channel_get_default_config(ph0_dma_chan);
+    
+    channel_config_set_dreq(&ph0_dma_cfg,pio_get_dreq (pio00, sm1, true));
+    channel_config_set_ring(&ph0_dma_cfg,true,5);
+    channel_config_set_chain_to(&ph0_dma_cfg,ph0_dma_chan);
+    channel_config_set_irq_quiet(&ph0_dma_cfg, true);
+    dma_channel_configure(ph0_dma_chan, 
+                        &ph0_dma_cfg,
+                        &pio00->txf[sm1],  // destination
+                        s_tab,                         // source
+                        32,   // number of dma transfers
+                        true                            // start immediatelly (will be blocked by pio)
+                        );
 
 
 }

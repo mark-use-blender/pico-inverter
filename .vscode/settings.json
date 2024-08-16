@@ -16,6 +16,9 @@
         "random": "c",
         "istream": "c",
         "limits": "c",
-        "numeric": "c"
+        "numeric": "c",
+        "clocks.h": "c",
+        "atomic": "c",
+        "cstdint": "c"
     }
 }
