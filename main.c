@@ -37,22 +37,24 @@ tab
 #include "hardware/irq.h"
 #include "hardware/dma.h"
 #include "ph0.pio.h"
-#include "ph1.pio.h"
+/*#include "ph1.pio.h"
 #include "ph2.pio.h"
 #include "ui.pio.h"
 #include "src/pico_servo.h"
-
+*/
 #define PI 3.14
 #define sindev 32
 #define tdev 6
 #define sft_tab 4
+PIO pio00 = pio0;
+PIO pio01 = pio1;
 int cldiv = 1;
-int feq = 1;
+int feq = 60;
 int phoff ;
 uint32_t *s_tab[32] __attribute__((aligned(2*sizeof(uint32_t *))));
 uint32_t rs_tab[32] __attribute__((aligned(2*sizeof(uint32_t *))));
 
-int phpin0 = 2;
+int phpin0 = 0;
 int phpin1 = 4;
 int phpin2 = 6;
 int rotpin = 8;
@@ -73,54 +75,84 @@ void iniclkpram()
     return;
   
 }
-
+//*/
 
 
 
 int main()
 {
+    gpio_set_function(phpin0, GPIO_FUNC_PIO0);
+    gpio_set_function(phpin0+1, GPIO_FUNC_PIO0);
+    gpio_init(25);
+    gpio_set_dir(25,GPIO_OUT);
+    gpio_put(25,false);
     iniclkpram();
     
-
-    PIO pio00 = pio0;
-    PIO pio01 = pio1;
+    
     // Get state machine in PIO 
     uint sm1 = pio_claim_unused_sm(pio00, true);
-    uint sm2 = pio_claim_unused_sm(pio00, true);
-    uint sm3 = pio_claim_unused_sm(pio01, true);
-    uint sm4 = pio_claim_unused_sm(pio01, true);
+    // uint sm2 = pio_claim_unused_sm(pio00, true);
+    // uint sm3 = pio_claim_unused_sm(pio01, true);
+    // uint sm4 = pio_claim_unused_sm(pio01, true);
     // Add PIO program to PIO instruction memory. SDK will find location and
     // return with the memory offset of the program.
     uint offset1 = pio_add_program(pio00, &ph0_program);
-    uint offset2 = pio_add_program(pio00, &ph0_program);
-    uint offset3 = pio_add_program(pio01, &ph0_program);
-    uint offset4 = pio_add_program(pio01, &ui_program);
+    // uint offset2 = pio_add_program(pio00, &ph0_program);
+    // uint offset3 = pio_add_program(pio01, &ph0_program);
+    // uint offset4 = pio_add_program(pio01, &ui_program);
     // Initialize the program using the helper function in our .pio file
-    ui_program_init(pio01, sm4, offset4, 1 ,rotpin);
+    ph0_program_init(pio00, sm1, offset1, 1, phpin0);
+    // ph1_program_init(pio00, sm2, offset2, 1, phpin1);
+    // ph2_program_init(pio01, sm3, offset3, 1, phpin2);
+    // ui_program_init(pio01, sm4, offset4, 1 ,rotpin);
+
+    uint ph0_dma_chan0 = dma_claim_unused_channel(true);
+    dma_channel_config ph0_dma_cfg0 = dma_channel_get_default_config(ph0_dma_chan0);
+
+    uint ph0_dma_chan1 = dma_claim_unused_channel(true);
+    dma_channel_config ph0_dma_cfg1 = dma_channel_get_default_config(ph0_dma_chan1);
+
+    //////////////////////
+    ///*
+    channel_config_set_transfer_data_size(&ph0_dma_cfg0,DMA_SIZE_32);
+    channel_config_set_read_increment(&ph0_dma_cfg0,true);
+    channel_config_set_dreq(&ph0_dma_cfg0,pio_get_dreq (pio00, sm1, true));
+    channel_config_set_ring(&ph0_dma_cfg0,false,4);
+    channel_config_set_chain_to(&ph0_dma_cfg0,ph0_dma_chan1);
+    channel_config_set_irq_quiet(&ph0_dma_cfg0, true);
+    dma_channel_set_read_addr(ph0_dma_chan0,&rs_tab[0],true);
+    dma_channel_configure(ph0_dma_chan0, 
+                        &ph0_dma_cfg0,
+                        &pio00->txf[sm1],  // destination
+                        &rs_tab[0],                         // source
+                        16,   // number of dma transfers
+                        true                           // start immediatelly (will be blocked by pio)
+                        );
+    //-----------------------------------------
+    gpio_put(25,true);
+    channel_config_set_transfer_data_size(&ph0_dma_cfg1,DMA_SIZE_32);
+    channel_config_set_read_increment(&ph0_dma_cfg1,true);
+    channel_config_set_dreq(&ph0_dma_cfg1,pio_get_dreq (pio00, sm1, true));
+    channel_config_set_ring(&ph0_dma_cfg1,false,4);
+    channel_config_set_chain_to(&ph0_dma_cfg1,ph0_dma_chan0);
+    channel_config_set_irq_quiet(&ph0_dma_cfg1, true);
+    dma_channel_set_read_addr(ph0_dma_chan1,&rs_tab[16],false);
+    dma_channel_configure(ph0_dma_chan1, 
+                        &ph0_dma_cfg1,
+                        &pio00->txf[sm1],  // destination
+                        &rs_tab[16],                         // source
+                        16,   // number of dma transfers
+                        false                           // start immediatelly (will be blocked by pio)
+                        );
+    
     // Start running our PIO program in the state machine
-    // pio_sm_set_enabled(pio00, sm1, true);
+    pio_sm_set_enabled(pio00, sm1, true);
     // pio_sm_set_enabled(pio00, sm2, true);
     // pio_sm_set_enabled(pio01, sm3, true);
-    pio_sm_set_enabled(pio01, sm4, true);
-    ph0_program_init(pio00, sm1, offset1, 1, phpin0);
-    ph1_program_init(pio00, sm2, offset2, 1, phpin1);
-    ph2_program_init(pio01, sm3, offset3, 1, phpin2);
-    //////////////////////
-    uint ph0_dma_chan = dma_claim_unused_channel(true);
+    // pio_sm_set_enabled(pio01, sm4, true);
+    gpio_put(25,true);
+    while (true){
+        tight_loop_contents();
 
-    dma_channel_config ph0_dma_cfg = dma_channel_get_default_config(ph0_dma_chan);
-    
-    channel_config_set_dreq(&ph0_dma_cfg,pio_get_dreq (pio00, sm1, true));
-    channel_config_set_ring(&ph0_dma_cfg,true,5);
-    channel_config_set_chain_to(&ph0_dma_cfg,ph0_dma_chan);
-    channel_config_set_irq_quiet(&ph0_dma_cfg, true);
-    dma_channel_configure(ph0_dma_chan, 
-                        &ph0_dma_cfg,
-                        &pio00->txf[sm1],  // destination
-                        s_tab,                         // source
-                        32,   // number of dma transfers
-                        true                            // start immediatelly (will be blocked by pio)
-                        );
-
-
+    }
 }

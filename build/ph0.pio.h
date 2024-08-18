@@ -13,56 +13,64 @@
 // --- //
 
 #define ph0_wrap_target 0
-#define ph0_wrap 17
+#define ph0_wrap 19
 
 static const uint16_t ph0_program_instructions[] = {
             //     .wrap_target
-    0x6050, //  0: out    y, 16           side 0     
-    0x60c8, //  1: out    isr, 8          side 0     
-    0x6021, //  2: out    x, 1            side 0     
-    0x004b, //  3: jmp    x--, 11         side 0     
-    0xa027, //  4: mov    x, osr          side 0     
-    0x1045, //  5: jmp    x--, 5          side 2     
-    0xa026, //  6: mov    x, isr          side 0     
-    0x0047, //  7: jmp    x--, 7          side 0     
-    0x0084, //  8: jmp    y--, 4          side 0     
-    0x6067, //  9: out    null, 7         side 0     
-    0x0000, // 10: jmp    0               side 0     
-    0xa027, // 11: mov    x, osr          side 0     
-    0x084c, // 12: jmp    x--, 12         side 1     
-    0xa026, // 13: mov    x, isr          side 0     
-    0x004e, // 14: jmp    x--, 14         side 0     
-    0x008b, // 15: jmp    y--, 11         side 0     
-    0x6067, // 16: out    null, 7         side 0     
-    0x0000, // 17: jmp    0               side 0     
+    0x7050, //  0: out    y, 16           side 0     
+    0x70c8, //  1: out    isr, 8          side 0     
+    0x7021, //  2: out    x, 1            side 0     
+    0x104c, //  3: jmp    x--, 12         side 0     
+    0xb027, //  4: mov    x, osr          side 0     
+    0xf401, //  5: set    pins, 1         side 1     
+    0x1446, //  6: jmp    x--, 6          side 1     
+    0xb026, //  7: mov    x, isr          side 0     
+    0x1048, //  8: jmp    x--, 8          side 0     
+    0x1084, //  9: jmp    y--, 4          side 0     
+    0x7067, // 10: out    null, 7         side 0     
+    0x1000, // 11: jmp    0               side 0     
+    0xb027, // 12: mov    x, osr          side 0     
+    0xf802, // 13: set    pins, 2         side 2     
+    0x184e, // 14: jmp    x--, 14         side 2     
+    0xb026, // 15: mov    x, isr          side 0     
+    0x1050, // 16: jmp    x--, 16         side 0     
+    0x108c, // 17: jmp    y--, 12         side 0     
+    0x7067, // 18: out    null, 7         side 0     
+    0x1000, // 19: jmp    0               side 0     
             //     .wrap
 };
 
 #if !PICO_NO_HARDWARE
 static const struct pio_program ph0_program = {
     .instructions = ph0_program_instructions,
-    .length = 18,
+    .length = 20,
     .origin = -1,
 };
 
 static inline pio_sm_config ph0_program_get_default_config(uint offset) {
     pio_sm_config c = pio_get_default_sm_config();
     sm_config_set_wrap(&c, offset + ph0_wrap_target, offset + ph0_wrap);
-    sm_config_set_sideset(&c, 2, false, false);
+    sm_config_set_sideset(&c, 3, true, false);
     return c;
 }
 
 // Helper function (for use in C program) to initialize this PIO program
 void ph0_program_init(PIO pio, uint sm, uint offset, float div, uint pin) {
     // Sets up state machine and wrap target. This function is automatically
+    pio_gpio_init(pio,pin);
+    pio_gpio_init(pio,pin+1);
     pio_sm_config c = ph0_program_get_default_config(offset);
-    sm_config_set_sideset(&c,2,false,false);
+    sm_config_set_set_pins (&c,pin,2);
+    sm_config_set_fifo_join (&c, 2);
+    sm_config_set_sideset(&c,3,true,false);
     sm_config_set_sideset_pins(&c,pin);
     sm_config_set_out_shift(&c,true,true,32);
     // Set the clock divider for the state machine
     sm_config_set_clkdiv(&c, div);
     // Load configuration and jump to start of the program
     pio_sm_init(pio, sm, offset, &c);
+    pio_sm_set_sideset_pins(pio,sm,pin);
+    pio_sm_set_consecutive_pindirs(pio, sm, pin, 2, true);
 }
 
 #endif
