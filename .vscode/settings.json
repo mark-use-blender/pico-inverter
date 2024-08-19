@@ -19,6 +19,7 @@
         "numeric": "c",
         "clocks.h": "c",
         "atomic": "c",
-        "cstdint": "c"
+        "cstdint": "c",
+        "ph0.pio.h": "c"
     }
 }

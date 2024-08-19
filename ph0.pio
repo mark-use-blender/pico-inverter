@@ -9,7 +9,7 @@ jmp x-- nhini side 0
 
 phini:
 mov x, osr    side 0 
-set pins, 1   side 1
+
 loph:
 jmp x-- loph  side 1
 mov x, isr    side 0
@@ -21,7 +21,7 @@ jmp nxts      side 0
 
 nhini:
 mov x, osr    side 0
-set pins, 2   side 2 
+
 lonh:
 jmp x-- lonh  side 2
 mov x, isr    side 0
@@ -48,7 +48,7 @@ void ph0_program_init(PIO pio, uint sm, uint offset, float div, uint pin) {
     pio_gpio_init(pio,pin+1);
     pio_sm_config c = ph0_program_get_default_config(offset);
     sm_config_set_set_pins (&c,pin,2);
-    sm_config_set_fifo_join (&c, 2);
+    //sm_config_set_fifo_join (&c, 2);
     sm_config_set_sideset(&c,3,true,false);
     sm_config_set_sideset_pins(&c,pin);
     sm_config_set_out_shift(&c,true,true,32);

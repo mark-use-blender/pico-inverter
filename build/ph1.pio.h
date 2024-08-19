@@ -13,46 +13,45 @@
 // --- //
 
 #define ph1_wrap_target 0
-#define ph1_wrap 8
+#define ph1_wrap 0
 
 static const uint16_t ph1_program_instructions[] = {
             //     .wrap_target
-    0xa02b, //  0: mov    x, !null                   
-    0x2082, //  1: wait   1 gpio, 2                  
-    0x2003, //  2: wait   0 gpio, 3                  
-    0x2002, //  3: wait   0 gpio, 2                  
-    0x00c6, //  4: jmp    pin, 6                     
-    0x0044, //  5: jmp    x--, 4                     
-    0xa029, //  6: mov    x, !x                      
-    0x4020, //  7: in     x, 32                      
-    0x8000, //  8: push   noblock                    
+    0x1800, //  0: jmp    0               side 2     
             //     .wrap
 };
 
 #if !PICO_NO_HARDWARE
 static const struct pio_program ph1_program = {
     .instructions = ph1_program_instructions,
-    .length = 9,
+    .length = 1,
     .origin = -1,
 };
 
 static inline pio_sm_config ph1_program_get_default_config(uint offset) {
     pio_sm_config c = pio_get_default_sm_config();
     sm_config_set_wrap(&c, offset + ph1_wrap_target, offset + ph1_wrap);
+    sm_config_set_sideset(&c, 3, true, false);
     return c;
 }
 
 // Helper function (for use in C program) to initialize this PIO program
 void ph1_program_init(PIO pio, uint sm, uint offset, float div, uint pin) {
     // Sets up state machine and wrap target. This function is automatically
-    pio_sm_config c = ph1_program_get_default_config(offset);
+    pio_gpio_init(pio,pin);
+    pio_gpio_init(pio,pin+1);
+    pio_sm_config c = ph0_program_get_default_config(offset);
+    sm_config_set_set_pins (&c,pin,2);
     sm_config_set_fifo_join (&c, 2);
-     sm_config_set_set_pins(&c,pin,2);
-    sm_config_set_jmp_pin(&c, 3);
+    sm_config_set_sideset(&c,3,true,false);
+    sm_config_set_sideset_pins(&c,pin);
+    sm_config_set_out_shift(&c,true,true,32);
     // Set the clock divider for the state machine
     sm_config_set_clkdiv(&c, div);
     // Load configuration and jump to start of the program
     pio_sm_init(pio, sm, offset, &c);
+    pio_sm_set_sideset_pins(pio,sm,pin);
+    pio_sm_set_consecutive_pindirs(pio, sm, pin, 2, true);
 }
 
 #endif
