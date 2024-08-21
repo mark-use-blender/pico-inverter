@@ -43,17 +43,20 @@ tab
 #include "ui.pio.h"
 #include "src/pico_servo.h"
 */
+
 #define PI 3.14
-#define sindev 32
+#define bitsh 6
 #define tdev 6
 #define sft_tab 4
+#define sindev 1<<(bitsh+1)
 PIO pio00 = pio0;
 PIO pio01 = pio1;
+
 int cldiv = 1;
-int feq = 60;
+int feq = 1;
 int phoff ;
-uint32_t *s_tab[32] __attribute__((aligned(2*sizeof(uint32_t *))));
-uint32_t rs_tab[32] __attribute__((aligned(2*sizeof(uint32_t *))));
+uint32_t *s_tab[sindev] __attribute__((aligned(2*sizeof(uint32_t *))));
+uint32_t rs_tab[sindev] __attribute__((aligned(2*sizeof(uint32_t *))));
 
 int phpin0 = 2;
 int phpin1 = 4;
@@ -61,16 +64,17 @@ int phpin2 = 6;
 int rotpin = 8;
 void iniclkpram()
 {
+
     s_tab;
     cldiv = (int)nearbyint(125000000/feq/sindev/(1<<tdev));
     phoff = sindev/3;
     for (int i=0;i<sindev;i++)
     {
-        uint32_t tmp = (uint32_t)abs(((int)nearbyint(sinf(PI*i*2/sindev)*(1<<tdev))));
+        uint32_t tmp = (uint32_t)abs(((int)nearbyint(sinf(PI*i*2/(sindev))*(1<<tdev))));
         s_tab[i] = &rs_tab[i];
         rs_tab[i] =  (uint32_t)cldiv|
                     (uint32_t)(((1<<tdev)-tmp)<<16)|
-                    (uint32_t)(((tmp<<1)|(i>>4))<<24);
+                    (uint32_t)(((tmp<<1)|(i>>bitsh))<<24);
         //printf("%32b\n",*s_tab[i]);
     }
     return;
@@ -84,9 +88,9 @@ int main()
 {
     //gpio_set_function(phpin0, GPIO_FUNC_PIO0);
     //gpio_set_function(phpin0+1, GPIO_FUNC_PIO0);
-    gpio_init(25);
-    gpio_set_dir(25,GPIO_OUT);
-    gpio_put(25,false);
+    // gpio_init(25);
+    // gpio_set_dir(25,GPIO_OUT);
+    // gpio_put(25,false);
     iniclkpram();
     
     
@@ -118,7 +122,7 @@ int main()
     channel_config_set_transfer_data_size(&ph0_dma_cfg0,DMA_SIZE_32);
     channel_config_set_read_increment(&ph0_dma_cfg0,true);
     channel_config_set_dreq(&ph0_dma_cfg0,pio_get_dreq (pio00, sm1, true));
-    channel_config_set_ring(&ph0_dma_cfg0,false,4);
+    channel_config_set_ring(&ph0_dma_cfg0,false,bitsh);
     channel_config_set_chain_to(&ph0_dma_cfg0,ph0_dma_chan1);
     channel_config_set_irq_quiet(&ph0_dma_cfg0, true);
     // dma_channel_set_read_addr(ph0_dma_chan0,&rs_tab[0],true);
@@ -126,7 +130,7 @@ int main()
                         &ph0_dma_cfg0,
                         &pio00->txf[sm1],  // destination
                         &rs_tab[0],                         // source
-                        16,   // number of dma transfers
+                        sindev/2,   // number of dma transfers
                         true                           // start immediatelly (will be blocked by pio)
                         );
     //-----------------------------------------
@@ -134,15 +138,15 @@ int main()
     channel_config_set_transfer_data_size(&ph0_dma_cfg1,DMA_SIZE_32);
     channel_config_set_read_increment(&ph0_dma_cfg1,true);
     channel_config_set_dreq(&ph0_dma_cfg1,pio_get_dreq (pio00, sm1, true));
-    channel_config_set_ring(&ph0_dma_cfg1,false,4);
+    channel_config_set_ring(&ph0_dma_cfg1,false,bitsh);
     channel_config_set_chain_to(&ph0_dma_cfg1,ph0_dma_chan0);
     channel_config_set_irq_quiet(&ph0_dma_cfg1, true);
     // dma_channel_set_read_addr(ph0_dma_chan1,&rs_tab[16],false);
     dma_channel_configure(ph0_dma_chan1, 
                         &ph0_dma_cfg1,
                         &pio00->txf[sm1],  // destination
-                        &rs_tab[16],                         // source
-                        16,   // number of dma transfers
+                        &rs_tab[sindev/2],                         // source
+                        sindev/2,   // number of dma transfers
                         false                           // start immediatelly (will be blocked by pio)
                         );
     
@@ -151,7 +155,7 @@ int main()
     // pio_sm_set_enabled(pio01, sm2, true);
     // pio_sm_set_enabled(pio01, sm3, true);
     // pio_sm_set_enabled(pio01, sm4, true);
-    gpio_put(25,true);
+    // gpio_put(25,true);
     while (true){
         tight_loop_contents();
 
