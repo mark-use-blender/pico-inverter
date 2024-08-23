@@ -37,30 +37,31 @@ tab
 #include "hardware/irq.h"
 #include "hardware/dma.h"
 #include "ph0.pio.h"
-#include "ph1.pio.h"
+
 /*
+#include "ph1.pio.h"
 #include "ph2.pio.h"
 #include "ui.pio.h"
 #include "src/pico_servo.h"
 */
 
-#define PI      3.14
-#define bitsh   6
-#define tdev    6
+#define PI      3
+#define bitsh   5
+#define tdev    5
 #define sft_tab 4
-#define sindev  1<<(bitsh+1)
+#define sindev  1<<((bitsh)+1)
 PIO pio00 = pio0;
 PIO pio01 = pio1;
 
 int cldiv =     1;
-int feq =       1;
+int feq =       10;
 int phoff        ;
-uint32_t *s_tab0[sindev] __attribute__((aligned(2*sizeof(uint32_t *))));
-uint32_t rs_tab0[sindev] __attribute__((aligned(2*sizeof(uint32_t *))));
-uint32_t *s_tab1[sindev] __attribute__((aligned(2*sizeof(uint32_t *))));
-uint32_t rs_tab1[sindev] __attribute__((aligned(2*sizeof(uint32_t *))));
-uint32_t *s_tab2[sindev] __attribute__((aligned(2*sizeof(uint32_t *))));
-uint32_t rs_tab2[sindev] __attribute__((aligned(2*sizeof(uint32_t *))));
+uint32_t *s_tab0[(sindev)] __attribute__((aligned(2*sizeof(uint32_t *))));
+uint32_t rs_tab0[(sindev)] __attribute__((aligned(2*sizeof(uint32_t *))));
+uint32_t *s_tab1[(sindev)] __attribute__((aligned(2*sizeof(uint32_t *))));
+uint32_t rs_tab1[(sindev)] __attribute__((aligned(2*sizeof(uint32_t *))));
+uint32_t *s_tab2[(sindev)] __attribute__((aligned(2*sizeof(uint32_t *))));
+uint32_t rs_tab2[(sindev)] __attribute__((aligned(2*sizeof(uint32_t *))));
 
 
 int phpin0 = 0;
@@ -71,30 +72,30 @@ void iniclkpram()
 {
 
     s_tab0;
-    cldiv = (int)nearbyint(125000000/feq/sindev/(1<<tdev));
-    phoff = 3;
-    for (int i=0;i<sindev;i++)
+    cldiv = (int)nearbyint(125000000/feq/(sindev)/(1<<(tdev)))+1;
+
+    for (int i=0;i<(sindev);i++)
     {
-        uint32_t tmp =  (uint32_t)((int)nearbyint(sinf((PI*((i/(float)(sindev)))*2))*(1<<tdev)));
+        uint32_t tmp =  (uint32_t)((int)nearbyint(sinf(((PI)*(((float)i/(float)(sindev))+0.66)*2.0))*(1<<(tdev))));
         s_tab0[i] = &rs_tab0[i];
         rs_tab0[i] =    (uint32_t)cldiv|
-                        (uint32_t)(((1<<tdev)-abs(tmp))<<16)|
+                        (uint32_t)(((1<<(tdev))-abs(tmp))<<16)|
                         (uint32_t)(((abs(tmp)<<1)|(tmp>>31))<<24);
 
-        tmp =           (uint32_t)((int)nearbyint(sinf((PI*((i/(float)(sindev))-0.33)*2))*(1<<tdev)));
+        tmp =           (uint32_t)((int)nearbyint(sinf(((PI)*(((float)i/(float)(sindev))+1.0)*2.0))*(1<<(tdev))));
         s_tab1[i] = &rs_tab1[i];
         rs_tab1[i] =    (uint32_t)cldiv|
-                        (uint32_t)(((1<<tdev)-abs(tmp))<<16)|
+                        (uint32_t)(((1<<(tdev))-abs(tmp))<<16)|
                         (uint32_t)(((abs(tmp)<<1)|(tmp>>31))<<24);
 
-        tmp =           (uint32_t)((int)nearbyint(sinf((PI*((i/(float)(sindev))+0.33)*2))*(1<<tdev)));
+        tmp =           (uint32_t)((int)nearbyint(sinf(((PI)*(((float)i/(float)(sindev))+0.33)*2.0))*(1<<(tdev))));
         s_tab2[i] = &rs_tab2[i];
         rs_tab2[i] =    (uint32_t)cldiv|
-                        (uint32_t)(((1<<tdev)-abs(tmp))<<16)|
+                        (uint32_t)(((1<<(tdev))-abs(tmp))<<16)|
                         (uint32_t)(((abs(tmp)<<1)|(tmp>>31))<<24);
-        //printf("%32b\n",*s_tab0[i]);
-        //printf("%32b\n",*s_tab1[i]);
-        //printf("%32b\n",*s_tab2[i]);
+        printf("%32b\n",*s_tab0[i]);
+        printf("%32b\n",*s_tab1[i]);
+        printf("%32b\n",*s_tab2[i]);
     }
     return;
   
@@ -129,6 +130,9 @@ int main()
     ph0_program_init(pio00, sm2, offset1, 1, phpin2);
     // ui_program_init(pio01, sm4, offset4, 1 ,rotpin);
 
+
+
+
     uint ph0_dma_chan0 = dma_claim_unused_channel(true);
     dma_channel_config ph0_dma_cfg0 = dma_channel_get_default_config(ph0_dma_chan0);
 
@@ -147,7 +151,7 @@ int main()
                             &ph0_dma_cfg0,
                             &pio00->txf[sm0],   // destination
                             &rs_tab0[0],        // source
-                            sindev/2,           // number of dma transfers
+                            (sindev)/2,           // number of dma transfers
                             true                // start immediatelly (will be blocked by pio)
                             );
     //-----------------------------------------
@@ -161,8 +165,8 @@ int main()
     dma_channel_configure(  ph0_dma_chan1, 
                             &ph0_dma_cfg1,
                             &pio00->txf[sm0],  // destination
-                            &rs_tab0[sindev/2],                         // source
-                            sindev/2,   // number of dma transfers
+                            &rs_tab0[(sindev)/2],                         // source
+                            (sindev)/2,   // number of dma transfers
                             false                           // start immediatelly (will be blocked by pio)
                             );
     
@@ -184,7 +188,7 @@ int main()
                             &ph1_dma_cfg0,
                             &pio00->txf[sm1],  // destination
                             &rs_tab1[0],                         // source
-                            sindev/2,   // number of dma transfers
+                            (sindev)/2,   // number of dma transfers
                             true                           // start immediatelly (will be blocked by pio)
                             );
     //-----------------------------------------
@@ -198,8 +202,8 @@ int main()
     dma_channel_configure(  ph1_dma_chan1, 
                             &ph1_dma_cfg1,
                             &pio00->txf[sm1],  // destination
-                            &rs_tab1[sindev/2],                         // source
-                            sindev/2,   // number of dma transfers
+                            &rs_tab1[(sindev)/2],                         // source
+                            (sindev)/2,   // number of dma transfers
                             false                           // start immediatelly (will be blocked by pio)
                             );
 
@@ -221,7 +225,7 @@ int main()
                             &ph2_dma_cfg0,
                             &pio00->txf[sm2],  // destination
                             &rs_tab2[0],                         // source
-                            sindev/2,   // number of dma transfers
+                            (sindev)/2,   // number of dma transfers
                             true                           // start immediatelly (will be blocked by pio)
                             );
     //-----------------------------------------
@@ -235,8 +239,8 @@ int main()
     dma_channel_configure(  ph2_dma_chan1, 
                             &ph2_dma_cfg1,
                             &pio00->txf[sm2],  // destination
-                            &rs_tab2[sindev/2],                         // source
-                            sindev/2,   // number of dma transfers
+                            &rs_tab2[(sindev)/2],                         // source
+                            (sindev)/2,   // number of dma transfers
                             false                           // start immediatelly (will be blocked by pio)
                             );
 
@@ -244,9 +248,10 @@ int main()
     
     // pio_sm_set_enabled(pio01, sm4, true);
     // gpio_put(25,true);
+    bool arm = false;
     while (true){
-        bool arm = false;
-        while (!arm){
+        
+        while (arm){
             //
         }
         iniclkpram();
@@ -256,6 +261,9 @@ int main()
                                         1<<sm1|
                                         1<<sm2);
         while (true){
+            tight_loop_contents();
+
         }
+        arm = false;
     }
 }

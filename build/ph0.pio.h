@@ -13,35 +13,37 @@
 // --- //
 
 #define ph0_wrap_target 0
-#define ph0_wrap 17
+#define ph0_wrap 19
 
 static const uint16_t ph0_program_instructions[] = {
             //     .wrap_target
     0x7050, //  0: out    y, 16           side 0     
     0x70c8, //  1: out    isr, 8          side 0     
     0x7021, //  2: out    x, 1            side 0     
-    0x104b, //  3: jmp    x--, 11         side 0     
+    0x104c, //  3: jmp    x--, 12         side 0     
     0xb027, //  4: mov    x, osr          side 0     
-    0x1445, //  5: jmp    x--, 5          side 1     
-    0xb026, //  6: mov    x, isr          side 0     
-    0x1047, //  7: jmp    x--, 7          side 0     
-    0x1084, //  8: jmp    y--, 4          side 0     
-    0x7067, //  9: out    null, 7         side 0     
-    0x1000, // 10: jmp    0               side 0     
-    0xb027, // 11: mov    x, osr          side 0     
-    0x184c, // 12: jmp    x--, 12         side 2     
-    0xb026, // 13: mov    x, isr          side 0     
-    0x104e, // 14: jmp    x--, 14         side 0     
-    0x108b, // 15: jmp    y--, 11         side 0     
-    0x7067, // 16: out    null, 7         side 0     
-    0x1000, // 17: jmp    0               side 0     
+    0x1028, //  5: jmp    !x, 8           side 0     
+    0x1446, //  6: jmp    x--, 6          side 1     
+    0xb026, //  7: mov    x, isr          side 0     
+    0x1048, //  8: jmp    x--, 8          side 0     
+    0x1084, //  9: jmp    y--, 4          side 0     
+    0x7067, // 10: out    null, 7         side 0     
+    0x1000, // 11: jmp    0               side 0     
+    0xb027, // 12: mov    x, osr          side 0     
+    0x1030, // 13: jmp    !x, 16          side 0     
+    0x184e, // 14: jmp    x--, 14         side 2     
+    0xb026, // 15: mov    x, isr          side 0     
+    0x1050, // 16: jmp    x--, 16         side 0     
+    0x108c, // 17: jmp    y--, 12         side 0     
+    0x7067, // 18: out    null, 7         side 0     
+    0x1000, // 19: jmp    0               side 0     
             //     .wrap
 };
 
 #if !PICO_NO_HARDWARE
 static const struct pio_program ph0_program = {
     .instructions = ph0_program_instructions,
-    .length = 18,
+    .length = 20,
     .origin = -1,
 };
 

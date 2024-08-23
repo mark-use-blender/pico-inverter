@@ -9,7 +9,7 @@ jmp x-- nhini side 0
 
 phini:
 mov x, osr    side 0 
-
+jmp !x lopl   side 0
 loph:
 jmp x-- loph  side 1
 mov x, isr    side 0
@@ -21,7 +21,7 @@ jmp nxts      side 0
 
 nhini:
 mov x, osr    side 0
-
+jmp !x lonl   side 0
 lonh:
 jmp x-- lonh  side 2
 mov x, isr    side 0
