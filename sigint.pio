@@ -1,0 +1,55 @@
+.program sigint
+.side_set 2 opt
+.wrap_target
+
+jmp !OSR send
+.wrap
+send:
+loop:
+out pins , 1    side 1
+jmp !OSR loop   side 0
+set pins , 0    side 2
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% c-sdk {
+
+// Helper function (for use in C program) to initialize this PIO program
+void ph0_program_init(PIO pio, uint sm, uint offset, float div, uint pin) {
+
+    // Sets up state machine and wrap target. This function is automatically
+    pio_gpio_init(pio,pin);
+    pio_gpio_init(pio,pin+1);
+    pio_sm_config c = ph0_program_get_default_config(offset);
+    sm_config_set_set_pins (&c,pin,2);
+    //sm_config_set_fifo_join (&c, 2);
+    sm_config_set_sideset(&c,3,true,false);
+    sm_config_set_sideset_pins(&c,pin);
+    sm_config_set_out_shift(&c,true,true,32);
+    // Set the clock divider for the state machine
+    sm_config_set_clkdiv(&c, 6.25);
+    // Load configuration and jump to start of the program
+    pio_sm_init(pio, sm, offset, &c);
+    
+    pio_sm_set_sideset_pins(pio,sm,pin);
+    pio_sm_set_consecutive_pindirs(pio, sm, pin, 2, true);
+}
+
+%}

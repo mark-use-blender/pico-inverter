@@ -45,6 +45,7 @@ target_link_libraries(
   hardware_irq
   pico_multicore
   hardware_pio
+  hardware_spi
 )
 
 
