@@ -61,16 +61,25 @@ int main()
     gpio_init(16);
     gpio_set_outover (17, GPIO_OVERRIDE_HIGH);
 
-
+    
 
     spi_init(spi0,20000000);
     spi_set_format(spi0,16,0,1,1);
-
-
+    sleep_ms(1000);
+    buffprep(sinfeq,0);
+    gpio_set_outover (1, GPIO_OVERRIDE_NORMAL);
+    spi_write16_blocking(spi0,buff,5);
+    gpio_set_outover (1, GPIO_OVERRIDE_HIGH);
+    buffprep(sinfeq,1);
+    gpio_set_outover (5, GPIO_OVERRIDE_NORMAL);
+    spi_write16_blocking(spi0,buff,5);
+    gpio_set_outover (5, GPIO_OVERRIDE_HIGH);
+    buffprep(sinfeq,2);
+    gpio_set_outover (17, GPIO_OVERRIDE_NORMAL);
+    spi_write16_blocking(spi0,buff,5);
+    gpio_set_outover (17, GPIO_OVERRIDE_HIGH);
     while (true)
     {
-
-        
         buffprep(sinfeq,0);
         gpio_set_outover (1, GPIO_OVERRIDE_NORMAL);
         spi_write16_blocking(spi0,buff,5);
@@ -83,6 +92,9 @@ int main()
         gpio_set_outover (17, GPIO_OVERRIDE_NORMAL);
         spi_write16_blocking(spi0,buff,5);
         gpio_set_outover (17, GPIO_OVERRIDE_HIGH);
+        tight_loop_contents();
+        
+        
     }
 
 
