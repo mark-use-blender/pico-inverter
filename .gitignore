@@ -50,3 +50,4 @@ build/pioasm
 build/*
 build*
 .profile
+build
