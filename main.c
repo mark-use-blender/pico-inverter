@@ -24,6 +24,8 @@ openocd -f interface/raspberrypi-swd.cfg -f target/rp2040.cfg -c "program pico-i
 int sinfeq = 60;
 uint16_t *buff;
 
+
+
 void buffprep(int feq,int pha)
 {
     uint16_t binfeq = (int)((feq)*(2<<27)/(25000000));
@@ -64,18 +66,24 @@ int main()
     spi_init(spi0,20000000);
     spi_set_format(spi0,16,0,1,1);
 
-    buffprep(sinfeq,0);
-    gpio_set_outover (1, GPIO_OVERRIDE_NORMAL);
-    spi_write16_blocking(spi0,buff,5);
-    gpio_set_outover (1, GPIO_OVERRIDE_HIGH);
-    buffprep(sinfeq,1);
-    gpio_set_outover (5, GPIO_OVERRIDE_NORMAL);
-    spi_write16_blocking(spi0,buff,5);
-    gpio_set_outover (5, GPIO_OVERRIDE_HIGH);
-    buffprep(sinfeq,2);
-    gpio_set_outover (17, GPIO_OVERRIDE_NORMAL);
-    spi_write16_blocking(spi0,buff,5);
-    gpio_set_outover (17, GPIO_OVERRIDE_HIGH);
+
+    while (true)
+    {
+
+        
+        buffprep(sinfeq,0);
+        gpio_set_outover (1, GPIO_OVERRIDE_NORMAL);
+        spi_write16_blocking(spi0,buff,5);
+        gpio_set_outover (1, GPIO_OVERRIDE_HIGH);
+        buffprep(sinfeq,1);
+        gpio_set_outover (5, GPIO_OVERRIDE_NORMAL);
+        spi_write16_blocking(spi0,buff,5);
+        gpio_set_outover (5, GPIO_OVERRIDE_HIGH);
+        buffprep(sinfeq,2);
+        gpio_set_outover (17, GPIO_OVERRIDE_NORMAL);
+        spi_write16_blocking(spi0,buff,5);
+        gpio_set_outover (17, GPIO_OVERRIDE_HIGH);
+    }
 
 
 

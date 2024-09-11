@@ -14,6 +14,7 @@
 
 #define ph0_wrap_target 0
 #define ph0_wrap 19
+#define ph0_pio_version 0
 
 static const uint16_t ph0_program_instructions[] = {
             //     .wrap_target
@@ -45,6 +46,10 @@ static const struct pio_program ph0_program = {
     .instructions = ph0_program_instructions,
     .length = 20,
     .origin = -1,
+    .pio_version = 0,
+#if PICO_PIO_VERSION > 0
+    .used_gpio_ranges = 0x0
+#endif
 };
 
 static inline pio_sm_config ph0_program_get_default_config(uint offset) {

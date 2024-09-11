@@ -14,6 +14,7 @@
 
 #define ui_wrap_target 3
 #define ui_wrap 10
+#define ui_pio_version 0
 
 static const uint16_t ui_program_instructions[] = {
     0xa02b, //  0: mov    x, !null                   
@@ -36,6 +37,10 @@ static const struct pio_program ui_program = {
     .instructions = ui_program_instructions,
     .length = 11,
     .origin = -1,
+    .pio_version = 0,
+#if PICO_PIO_VERSION > 0
+    .used_gpio_ranges = 0x1
+#endif
 };
 
 static inline pio_sm_config ui_program_get_default_config(uint offset) {

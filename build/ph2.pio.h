@@ -14,6 +14,7 @@
 
 #define ph2_wrap_target 3
 #define ph2_wrap 11
+#define ph2_pio_version 0
 
 static const uint16_t ph2_program_instructions[] = {
     0xa02b, //  0: mov    x, !null                   
@@ -37,6 +38,10 @@ static const struct pio_program ph2_program = {
     .instructions = ph2_program_instructions,
     .length = 12,
     .origin = -1,
+    .pio_version = 0,
+#if PICO_PIO_VERSION > 0
+    .used_gpio_ranges = 0x1
+#endif
 };
 
 static inline pio_sm_config ph2_program_get_default_config(uint offset) {

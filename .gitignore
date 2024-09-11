@@ -47,4 +47,6 @@ build/pico-sdk/src
 build/generated
 build/elf2uf2
 build/pioasm
+build/*
+build*
 .profile

@@ -31,16 +31,16 @@ pico_generate_pio_header(pico-invrerter
 
 pico_add_extra_outputs(pico-invrerter)
 target_link_libraries(
-  pico-invrerter 
-  pico_stdlib 
+  pico-invrerter
+  pico_stdlib
   hardware_clocks
-  hardware_gpio 
-  hardware_adc 
-  hardware_pwm 
-  hardware_uart 
-  hardware_flash 
+  hardware_gpio
+  hardware_adc
+  hardware_pwm
+  hardware_uart
+  hardware_flash
   hardware_dma
-  hardware_sync 
+  hardware_sync
   hardware_timer
   hardware_irq
   pico_multicore
