@@ -168,8 +168,6 @@ Discarded input sections
  .text          0x0000000000000000        0x0 CMakeFiles/pico-invrerter.dir/main.c.obj
  .data          0x0000000000000000        0x0 CMakeFiles/pico-invrerter.dir/main.c.obj
  .bss           0x0000000000000000        0x0 CMakeFiles/pico-invrerter.dir/main.c.obj
- .text.ph0_program_init
-                0x0000000000000000      0x188 CMakeFiles/pico-invrerter.dir/main.c.obj
  .text          0x0000000000000000        0x0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdlib/stdlib.c.obj
  .data          0x0000000000000000        0x0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdlib/stdlib.c.obj
  .bss           0x0000000000000000        0x0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdlib/stdlib.c.obj
@@ -247,6 +245,8 @@ Discarded input sections
                 0x0000000000000000       0xa0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
  .text.gpio_set_input_enabled
                 0x0000000000000000       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
+ .text.gpio_init
+                0x0000000000000000       0x16 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
  .text.gpio_deinit
                 0x0000000000000000        0xa CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
  .text.gpio_init_mask
@@ -1083,8 +1083,6 @@ Discarded input sections
                 0x0000000000000000       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
  .text.__wrap_trunc
                 0x0000000000000000       0x60 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
- .text.__wrap_round
-                0x0000000000000000       0x9c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
  .text.__wrap_floor
                 0x0000000000000000       0x9c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
  .text.__wrap_ceil
@@ -1137,18 +1135,6 @@ Discarded input sections
                 0x0000000000000000       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
  .text.__wrap_remainder
                 0x0000000000000000       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
- .debug_info    0x0000000000000000     0x5562 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
- .debug_abbrev  0x0000000000000000      0x2e3 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
- .debug_loc     0x0000000000000000     0x7f1a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
- .debug_aranges
-                0x0000000000000000      0x130 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
- .debug_ranges  0x0000000000000000      0x5e8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
- .debug_line    0x0000000000000000     0x2c13 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
- .debug_str     0x0000000000000000      0x506 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
- .comment       0x0000000000000000       0x34 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
- .debug_frame   0x0000000000000000      0x440 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
- .ARM.attributes
-                0x0000000000000000       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
  .text          0x0000000000000000        0x0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
  .data          0x0000000000000000        0x0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
  .bss           0x0000000000000000        0x0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
@@ -1925,9 +1911,9 @@ Discarded input sections
                 0x0000000000000000       0x42 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
  .time_critical.spi_read16_blocking
                 0x0000000000000000       0x3e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
- .text          0x0000000000000000        0x0 /tmp/ccDM1KQt.o
- .data          0x0000000000000000        0x0 /tmp/ccDM1KQt.o
- .bss           0x0000000000000000        0x0 /tmp/ccDM1KQt.o
+ .text          0x0000000000000000        0x0 /tmp/ccs97IYm.o
+ .data          0x0000000000000000        0x0 /tmp/ccs97IYm.o
+ .bss           0x0000000000000000        0x0 /tmp/ccs97IYm.o
  .data          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .text          0x0000000000000000       0x10 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-atexit.o)
@@ -2802,11 +2788,11 @@ LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nof
 .boot2          0x0000000010000000      0x100
                 0x0000000010000000                __boot2_start__ = .
  *(.boot2)
- .boot2         0x0000000010000000      0x100 /tmp/ccDM1KQt.o
+ .boot2         0x0000000010000000      0x100 /tmp/ccs97IYm.o
                 0x0000000010000100                __boot2_end__ = .
                 0x0000000000000001                ASSERT (((__boot2_end__ - __boot2_start__) == 0x100), ERROR: Pico second stage bootloader must be 256 bytes in size)
 
-.text           0x0000000010000100     0x37b0
+.text           0x0000000010000100     0x3828
                 0x0000000010000100                __logical_binary_start = .
  *(.vectors)
  .vectors       0x0000000010000100       0xd4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
@@ -2871,378 +2857,377 @@ LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nof
  .text.buffprep
                 0x0000000010000320       0x70 CMakeFiles/pico-invrerter.dir/main.c.obj
                 0x0000000010000320                buffprep
- .text.main     0x0000000010000390      0x1a0 CMakeFiles/pico-invrerter.dir/main.c.obj
+ .text.main     0x0000000010000390      0x194 CMakeFiles/pico-invrerter.dir/main.c.obj
                 0x0000000010000390                main
  .text.gpio_set_function
-                0x0000000010000530       0x34 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x0000000010000530                gpio_set_function
+                0x0000000010000524       0x34 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x0000000010000524                gpio_set_function
  .text.gpio_set_outover
-                0x0000000010000564       0x24 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x0000000010000564                gpio_set_outover
- .text.gpio_init
-                0x0000000010000588       0x16 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
-                0x0000000010000588                gpio_init
- *fill*         0x000000001000059e        0x2 
- .text.panic    0x00000000100005a0       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
-                0x00000000100005a0                panic
+                0x0000000010000558       0x24 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x0000000010000558                gpio_set_outover
+ .text.panic    0x000000001000057c       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
+                0x000000001000057c                panic
  .text.hw_claim_lock
-                0x00000000100005d0       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
-                0x00000000100005d0                hw_claim_lock
+                0x00000000100005ac       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
+                0x00000000100005ac                hw_claim_lock
  .text.hw_claim_unlock
-                0x00000000100005e8       0x14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
-                0x00000000100005e8                hw_claim_unlock
+                0x00000000100005c4       0x14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
+                0x00000000100005c4                hw_claim_unlock
  .text.hw_claim_or_assert
-                0x00000000100005fc       0x32 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
-                0x00000000100005fc                hw_claim_or_assert
- *fill*         0x000000001000062e        0x2 
+                0x00000000100005d8       0x32 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
+                0x00000000100005d8                hw_claim_or_assert
+ *fill*         0x000000001000060a        0x2 
  .text.next_striped_spin_lock_num
-                0x0000000010000630       0x1c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
-                0x0000000010000630                next_striped_spin_lock_num
+                0x000000001000060c       0x1c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
+                0x000000001000060c                next_striped_spin_lock_num
  .text.spin_locks_reset
-                0x000000001000064c       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
-                0x000000001000064c                spin_locks_reset
+                0x0000000010000628       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
+                0x0000000010000628                spin_locks_reset
  .text.set_raw_irq_handler_and_unlock
-                0x000000001000066c       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010000648       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
  .text.nvic_ipr0
-                0x0000000010000694        0x8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010000670        0x8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
  .text.runtime_init_per_core_irq_priorities
-                0x000000001000069c       0x1c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
-                0x000000001000069c                runtime_init_per_core_irq_priorities
+                0x0000000010000678       0x1c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010000678                runtime_init_per_core_irq_priorities
  .text.irq_set_mask_n_enabled
-                0x00000000100006b8       0x1c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
-                0x00000000100006b8                irq_set_mask_n_enabled
+                0x0000000010000694       0x1c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010000694                irq_set_mask_n_enabled
  .text.irq_set_enabled
-                0x00000000100006d4       0x14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
-                0x00000000100006d4                irq_set_enabled
+                0x00000000100006b0       0x14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+                0x00000000100006b0                irq_set_enabled
  .text.irq_get_vtable_handler
-                0x00000000100006e8       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
-                0x00000000100006e8                irq_get_vtable_handler
+                0x00000000100006c4       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+                0x00000000100006c4                irq_get_vtable_handler
  .text.irq_set_exclusive_handler
-                0x00000000100006f8       0x54 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
-                0x00000000100006f8                irq_set_exclusive_handler
+                0x00000000100006d4       0x54 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+                0x00000000100006d4                irq_set_exclusive_handler
  .text.lock_init
-                0x000000001000074c       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
-                0x000000001000074c                lock_init
+                0x0000000010000728       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
+                0x0000000010000728                lock_init
  .text.mutex_init
-                0x000000001000075c       0x1a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
-                0x000000001000075c                mutex_init
+                0x0000000010000738       0x1a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
+                0x0000000010000738                mutex_init
  .text.recursive_mutex_init
-                0x0000000010000776       0x1e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
-                0x0000000010000776                recursive_mutex_init
+                0x0000000010000752       0x1e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
+                0x0000000010000752                recursive_mutex_init
  .text.runtime_init_mutex
-                0x0000000010000794       0x4c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
-                0x0000000010000794                runtime_init_mutex
+                0x0000000010000770       0x4c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
+                0x0000000010000770                runtime_init_mutex
  .text.make_alarm_id
-                0x00000000100007e0        0x6 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
- *fill*         0x00000000100007e6        0x2 
+                0x00000000100007bc        0x6 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+ *fill*         0x00000000100007c2        0x2 
  .text.sleep_until_callback
-                0x00000000100007e8       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+                0x00000000100007c4       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
  .text.alarm_pool_irq_handler
-                0x0000000010000818      0x2e4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+                0x00000000100007f4      0x2e4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
  .text.alarm_pool_post_alloc_init
-                0x0000000010000afc       0x94 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+                0x0000000010000ad8       0x94 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
  .text.alarm_pool_get_default
-                0x0000000010000b90       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
-                0x0000000010000b90                alarm_pool_get_default
+                0x0000000010000b6c       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+                0x0000000010000b6c                alarm_pool_get_default
  .text.alarm_pool_add_alarm_at_force_in_context
-                0x0000000010000bbc       0xb0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
-                0x0000000010000bbc                alarm_pool_add_alarm_at_force_in_context
+                0x0000000010000b98       0xb0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+                0x0000000010000b98                alarm_pool_add_alarm_at_force_in_context
  .text.alarm_pool_add_alarm_at
-                0x0000000010000c6c       0x3c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
-                0x0000000010000c6c                alarm_pool_add_alarm_at
+                0x0000000010000c48       0x3c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+                0x0000000010000c48                alarm_pool_add_alarm_at
  .text.alarm_pool_cancel_alarm
-                0x0000000010000ca8       0x78 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
-                0x0000000010000ca8                alarm_pool_cancel_alarm
+                0x0000000010000c84       0x78 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+                0x0000000010000c84                alarm_pool_cancel_alarm
  .text.sleep_until
-                0x0000000010000d20       0xc8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
-                0x0000000010000d20                sleep_until
+                0x0000000010000cfc       0xc8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+                0x0000000010000cfc                sleep_until
  .text.sleep_us
-                0x0000000010000de8       0x24 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
-                0x0000000010000de8                sleep_us
+                0x0000000010000dc4       0x24 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+                0x0000000010000dc4                sleep_us
  .text.sleep_ms
-                0x0000000010000e0c       0x14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
-                0x0000000010000e0c                sleep_ms
+                0x0000000010000de8       0x14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+                0x0000000010000de8                sleep_ms
  .text.best_effort_wfe_or_timeout
-                0x0000000010000e20       0xd8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
-                0x0000000010000e20                best_effort_wfe_or_timeout
+                0x0000000010000dfc       0xd8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+                0x0000000010000dfc                best_effort_wfe_or_timeout
  .text.alarm_pool_get_default_timer
-                0x0000000010000ef8        0x8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
-                0x0000000010000ef8                alarm_pool_get_default_timer
+                0x0000000010000ed4        0x8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+                0x0000000010000ed4                alarm_pool_get_default_timer
  .text.runtime_init_default_alarm_pool
-                0x0000000010000f00       0x38 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
-                0x0000000010000f00                runtime_init_default_alarm_pool
+                0x0000000010000edc       0x38 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+                0x0000000010000edc                runtime_init_default_alarm_pool
  .text.timer_hardware_alarm_claim
-                0x0000000010000f38       0x14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
-                0x0000000010000f38                timer_hardware_alarm_claim
+                0x0000000010000f14       0x14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010000f14                timer_hardware_alarm_claim
  .text.timer_time_us_64
-                0x0000000010000f4c       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
-                0x0000000010000f4c                timer_time_us_64
+                0x0000000010000f28       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010000f28                timer_time_us_64
  .text.timer_busy_wait_until
-                0x0000000010000f5c       0x1a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
-                0x0000000010000f5c                timer_busy_wait_until
- *fill*         0x0000000010000f76        0x2 
+                0x0000000010000f38       0x1a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010000f38                timer_busy_wait_until
+ *fill*         0x0000000010000f52        0x2 
  .text.time_us_64
-                0x0000000010000f78       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
-                0x0000000010000f78                time_us_64
+                0x0000000010000f54       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010000f54                time_us_64
  .text.busy_wait_until
-                0x0000000010000f88       0x14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
-                0x0000000010000f88                busy_wait_until
+                0x0000000010000f64       0x14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
+                0x0000000010000f64                busy_wait_until
  .text.clock_configure_internal
-                0x0000000010000f9c       0xc4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x0000000010000f78       0xc4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
  .text.clock_configure_int_divider
-                0x0000000010001060       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x0000000010001060                clock_configure_int_divider
+                0x000000001000103c       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x000000001000103c                clock_configure_int_divider
  .text.clock_configure_undivided
-                0x0000000010001088       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x0000000010001088                clock_configure_undivided
- *fill*         0x000000001000109a        0x2 
+                0x0000000010001064       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x0000000010001064                clock_configure_undivided
+ *fill*         0x0000000010001076        0x2 
  .text.clock_get_hz
-                0x000000001000109c        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
-                0x000000001000109c                clock_get_hz
+                0x0000000010001078        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x0000000010001078                clock_get_hz
  .text.pll_init
-                0x00000000100010a8      0x120 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
-                0x00000000100010a8                pll_init
+                0x0000000010001084      0x120 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
+                0x0000000010001084                pll_init
  .text.tick_start
-                0x00000000100011c8       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
-                0x00000000100011c8                tick_start
+                0x00000000100011a4       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
+                0x00000000100011a4                tick_start
  .text.xosc_init
-                0x00000000100011d8       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
-                0x00000000100011d8                xosc_init
+                0x00000000100011b4       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
+                0x00000000100011b4                xosc_init
  .text.runtime_run_initializers_from
-                0x0000000010001200       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
+                0x00000000100011dc       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
  .text.first_per_core_initializer
-                0x0000000010001218        0x2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
- *fill*         0x000000001000121a        0x2 
+                0x00000000100011f4        0x2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
+ *fill*         0x00000000100011f6        0x2 
  .text.runtime_run_initializers
-                0x000000001000121c       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
-                0x000000001000121c                runtime_run_initializers
+                0x00000000100011f8       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
+                0x00000000100011f8                runtime_run_initializers
  .text.runtime_init_early_resets
-                0x000000001000122c       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x000000001000122c                runtime_init_early_resets
+                0x0000000010001208       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x0000000010001208                runtime_init_early_resets
  .text.runtime_init_usb_power_down
-                0x0000000010001258       0x1c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x0000000010001258                runtime_init_usb_power_down
+                0x0000000010001234       0x1c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x0000000010001234                runtime_init_usb_power_down
  .text.runtime_init_post_clock_resets
-                0x0000000010001274       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x0000000010001274                runtime_init_post_clock_resets
+                0x0000000010001250       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x0000000010001250                runtime_init_post_clock_resets
  .text.runtime_init_rp2040_gpio_ie_disable
-                0x0000000010001294       0x14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x0000000010001294                runtime_init_rp2040_gpio_ie_disable
+                0x0000000010001270       0x14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x0000000010001270                runtime_init_rp2040_gpio_ie_disable
  .text.runtime_init_spin_locks_reset
-                0x00000000100012a8        0x8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x00000000100012a8                runtime_init_spin_locks_reset
+                0x0000000010001284        0x8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x0000000010001284                runtime_init_spin_locks_reset
  .text.runtime_init_install_ram_vector_table
-                0x00000000100012b0       0x1c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x00000000100012b0                runtime_init_install_ram_vector_table
+                0x000000001000128c       0x1c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x000000001000128c                runtime_init_install_ram_vector_table
  .text.start_all_ticks
-                0x00000000100012cc       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
+                0x00000000100012a8       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
  .text.runtime_init_clocks
-                0x00000000100012f4       0xcc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
-                0x00000000100012f4                runtime_init_clocks
- .text          0x00000000100013c0       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+                0x00000000100012d0       0xcc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
+                0x00000000100012d0                runtime_init_clocks
+ .text          0x000000001000139c       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
  .text.rom_func_lookup
-                0x00000000100013d0       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x00000000100013d0                rom_func_lookup
+                0x00000000100013ac       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x00000000100013ac                rom_func_lookup
  .text.rom_data_lookup
-                0x00000000100013e0       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x00000000100013e0                rom_data_lookup
+                0x00000000100013bc       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x00000000100013bc                rom_data_lookup
  .text.rom_funcs_lookup
-                0x00000000100013f0       0x36 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
-                0x00000000100013f0                rom_funcs_lookup
- *fill*         0x0000000010001426        0x2 
+                0x00000000100013cc       0x36 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x00000000100013cc                rom_funcs_lookup
+ *fill*         0x0000000010001402        0x2 
  .text.__wrap___aeabi_idiv
-                0x0000000010001428       0x50 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
-                0x0000000010001428                __wrap___aeabi_idivmod
-                0x0000000010001428                divmod_s32s32
-                0x0000000010001428                div_s32s32
-                0x0000000010001428                __wrap___aeabi_idiv
-                0x0000000010001430                divmod_s32s32_unsafe
-                0x000000001000145c                divmod_s32s32_savestate
+                0x0000000010001404       0x50 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
+                0x0000000010001404                __wrap___aeabi_idivmod
+                0x0000000010001404                divmod_s32s32
+                0x0000000010001404                div_s32s32
+                0x0000000010001404                __wrap___aeabi_idiv
+                0x000000001000140c                divmod_s32s32_unsafe
+                0x0000000010001438                divmod_s32s32_savestate
  .text.__wrap___aeabi_uidiv
-                0x0000000010001478       0x4c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
-                0x0000000010001478                __wrap___aeabi_uidiv
-                0x0000000010001478                __wrap___aeabi_uidivmod
-                0x0000000010001478                div_u32u32
-                0x0000000010001478                divmod_u32u32
-                0x0000000010001480                divmod_u32u32_unsafe
-                0x00000000100014a8                divmod_u32u32_savestate
+                0x0000000010001454       0x4c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
+                0x0000000010001454                __wrap___aeabi_uidiv
+                0x0000000010001454                __wrap___aeabi_uidivmod
+                0x0000000010001454                div_u32u32
+                0x0000000010001454                divmod_u32u32
+                0x000000001000145c                divmod_u32u32_unsafe
+                0x0000000010001484                divmod_u32u32_savestate
  .text.__wrap___aeabi_ldiv
-                0x00000000100014c4      0x424 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
-                0x00000000100014c4                div_s64s64
-                0x00000000100014c4                divmod_s64s64
-                0x00000000100014c4                __wrap___aeabi_ldivmod
-                0x00000000100014f4                div_u64u64
-                0x00000000100014f4                divmod_u64u64
-                0x00000000100014f4                __wrap___aeabi_uldivmod
-                0x0000000010001504                divmod_u64u64_savestate
-                0x0000000010001524                divmod_s64s64_unsafe
-                0x00000000100015ac                divmod_u64u64_unsafe
+                0x00000000100014a0      0x424 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
+                0x00000000100014a0                div_s64s64
+                0x00000000100014a0                divmod_s64s64
+                0x00000000100014a0                __wrap___aeabi_ldivmod
+                0x00000000100014d0                div_u64u64
+                0x00000000100014d0                divmod_u64u64
+                0x00000000100014d0                __wrap___aeabi_uldivmod
+                0x00000000100014e0                divmod_u64u64_savestate
+                0x0000000010001500                divmod_s64s64_unsafe
+                0x0000000010001588                divmod_u64u64_unsafe
  .text.__wrap___aeabi_darithmetic
-                0x00000000100018e8       0x80 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x00000000100018e8                __wrap___aeabi_drsub
-                0x00000000100018ee                __wrap___aeabi_dsub
-                0x0000000010001900                __wrap___aeabi_dadd
-                0x0000000010001912                __wrap___aeabi_ddiv
-                0x000000001000194e                __wrap___aeabi_dmul
+                0x00000000100018c4       0x80 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x00000000100018c4                __wrap___aeabi_drsub
+                0x00000000100018ca                __wrap___aeabi_dsub
+                0x00000000100018dc                __wrap___aeabi_dadd
+                0x00000000100018ee                __wrap___aeabi_ddiv
+                0x000000001000192a                __wrap___aeabi_dmul
  .text.__wrap___aeabi_cdcmple
-                0x0000000010001968       0x6c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x0000000010001968                __wrap___aeabi_cdrcmple
-                0x0000000010001978                __wrap___aeabi_cdcmple
-                0x0000000010001978                __wrap___aeabi_cdcmpeq
+                0x0000000010001944       0x6c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x0000000010001944                __wrap___aeabi_cdrcmple
+                0x0000000010001954                __wrap___aeabi_cdcmple
+                0x0000000010001954                __wrap___aeabi_cdcmpeq
  .text.__wrap___aeabi_dcmplt
-                0x00000000100019d4        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x00000000100019d4                __wrap___aeabi_dcmplt
+                0x00000000100019b0        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x00000000100019b0                __wrap___aeabi_dcmplt
  .text.__wrap___aeabi_dcmple
-                0x00000000100019e0       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x00000000100019e0                __wrap___aeabi_dcmple
+                0x00000000100019bc       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x00000000100019bc                __wrap___aeabi_dcmple
  .text.__wrap___aeabi_dcmpge
-                0x00000000100019f0       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x00000000100019f0                __wrap___aeabi_dcmpge
+                0x00000000100019cc       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x00000000100019cc                __wrap___aeabi_dcmpge
  .text.__wrap___aeabi_dcmpgt
-                0x0000000010001a00        0xa CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x0000000010001a00                __wrap___aeabi_dcmpgt
+                0x00000000100019dc        0xa CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x00000000100019dc                __wrap___aeabi_dcmpgt
  .text.__wrap___aeabi_dcmpun
-                0x0000000010001a0a       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x0000000010001a0a                __wrap___aeabi_dcmpun
- *fill*         0x0000000010001a22        0x2 
+                0x00000000100019e6       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x00000000100019e6                __wrap___aeabi_dcmpun
+ *fill*         0x00000000100019fe        0x2 
  .text.__wrap___aeabi_i2d
-                0x0000000010001a24       0x38 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x0000000010001a24                __wrap___aeabi_ui2d
-                0x0000000010001a2c                __wrap___aeabi_i2d
+                0x0000000010001a00       0x38 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x0000000010001a00                __wrap___aeabi_ui2d
+                0x0000000010001a08                __wrap___aeabi_i2d
  .text.__wrap___aeabi_d2iz
-                0x0000000010001a5c       0x48 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x0000000010001a5c                __wrap___aeabi_d2iz
-                0x0000000010001a5c                double2int_z
+                0x0000000010001a38       0x48 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x0000000010001a38                __wrap___aeabi_d2iz
+                0x0000000010001a38                double2int_z
  .text.__wrap___aeabi_d2uiz
-                0x0000000010001aa4       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
-                0x0000000010001aa4                double2uint
-                0x0000000010001aa4                __wrap___aeabi_d2uiz
+                0x0000000010001a80       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x0000000010001a80                double2uint
+                0x0000000010001a80                __wrap___aeabi_d2uiz
  .text.__aeabi_double_init
-                0x0000000010001abc       0xc8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
-                0x0000000010001abc                __aeabi_double_init
+                0x0000000010001a98       0xc8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+                0x0000000010001a98                __aeabi_double_init
+ .text.__wrap_round
+                0x0000000010001b60       0x9c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
+                0x0000000010001b60                __wrap_round
  .text.double_table_shim_on_use_helper
-                0x0000000010001b84       0x34 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
-                0x0000000010001b84                double_table_shim_on_use_helper
+                0x0000000010001bfc       0x34 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x0000000010001bfc                double_table_shim_on_use_helper
  .text.__wrap___aeabi_dsub
-                0x0000000010001bb8       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
-                0x0000000010001bb8                drsub_shim
-                0x0000000010001bbe                dsub_shim
+                0x0000000010001c30       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x0000000010001c30                drsub_shim
+                0x0000000010001c36                dsub_shim
  .text.dadd_shim
-                0x0000000010001bc8      0x15c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
-                0x0000000010001bc8                dadd_shim
+                0x0000000010001c40      0x15c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x0000000010001c40                dadd_shim
  .text.dmul_shim
-                0x0000000010001d24      0x15c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
-                0x0000000010001d24                dmul_shim
+                0x0000000010001d9c      0x15c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x0000000010001d9c                dmul_shim
  .text.ddiv_shim
-                0x0000000010001e80      0x1b0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
-                0x0000000010001e80                ddiv_shim
+                0x0000000010001ef8      0x1b0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x0000000010001ef8                ddiv_shim
  .text.double2uint_shim
-                0x0000000010002030        0xe CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
-                0x0000000010002030                double2uint_shim
-                0x0000000010002032                double2ufix_shim
- *fill*         0x000000001000203e        0x2 
+                0x00000000100020a8        0xe CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x00000000100020a8                double2uint_shim
+                0x00000000100020aa                double2ufix_shim
+ *fill*         0x00000000100020b6        0x2 
  .text.double2uint64_shim
-                0x0000000010002040       0x70 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
-                0x0000000010002040                double2uint64_shim
-                0x0000000010002042                double2ufix64_shim
-                0x0000000010002062                d2fix_a
+                0x00000000100020b8       0x70 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x00000000100020b8                double2uint64_shim
+                0x00000000100020ba                double2ufix64_shim
+                0x00000000100020da                d2fix_a
  .text.dunpacks
-                0x00000000100020b0       0x3c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
-                0x00000000100020b0                dunpacks
+                0x0000000010002128       0x3c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x0000000010002128                dunpacks
  .text.__aeabi_lmul
-                0x00000000100020ec       0x32 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
-                0x00000000100020ec                __wrap___aeabi_lmul
- *fill*         0x000000001000211e        0x2 
+                0x0000000010002164       0x32 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+                0x0000000010002164                __wrap___aeabi_lmul
+ *fill*         0x0000000010002196        0x2 
  .text.__aeabi_float_init
-                0x0000000010002120       0xfc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
-                0x0000000010002120                __aeabi_float_init
+                0x0000000010002198       0xfc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+                0x0000000010002198                __aeabi_float_init
  .text.float_table_shim_on_use_helper
-                0x000000001000221c       0x34 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
-                0x000000001000221c                float_table_shim_on_use_helper
- .text          0x0000000010002250       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x0000000010002250                __aeabi_mem_init
- .text.memcpy   0x0000000010002260        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
-                0x0000000010002260                __wrap___aeabi_memcpy
-                0x0000000010002260                __wrap_memcpy
+                0x0000000010002294       0x34 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
+                0x0000000010002294                float_table_shim_on_use_helper
+ .text          0x00000000100022c8       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x00000000100022c8                __aeabi_mem_init
+ .text.memcpy   0x00000000100022d8        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x00000000100022d8                __wrap___aeabi_memcpy
+                0x00000000100022d8                __wrap_memcpy
  .text._out_null
-                0x000000001000226c        0x2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+                0x00000000100022e4        0x2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
  .text._out_fct
-                0x000000001000226e        0xe CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
- .text._atoi    0x000000001000227c       0x24 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+                0x00000000100022e6        0xe CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+ .text._atoi    0x00000000100022f4       0x24 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
  .text._out_rev
-                0x00000000100022a0       0xae CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010002318       0xae CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
  .text._ntoa_format
-                0x000000001000234e      0x112 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+                0x00000000100023c6      0x112 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
  .text._ntoa_long
-                0x0000000010002460       0xbc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+                0x00000000100024d8       0xbc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
  .text._ntoa_long_long
-                0x000000001000251c       0xe2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
- *fill*         0x00000000100025fe        0x2 
- .text._etoa    0x0000000010002600      0x414 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
- .text._ftoa    0x0000000010002a14      0x354 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010002594       0xe2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+ *fill*         0x0000000010002676        0x2 
+ .text._etoa    0x0000000010002678      0x414 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+ .text._ftoa    0x0000000010002a8c      0x354 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
  .text._vsnprintf
-                0x0000000010002d68      0x624 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010002de0      0x624 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
  .text.vfctprintf
-                0x000000001000338c       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
-                0x000000001000338c                vfctprintf
- .text._exit    0x00000000100033ac        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
-                0x00000000100033ac                _exit
- .text.exit     0x00000000100033b0        0x6 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
-                0x00000000100033b0                exit
- *fill*         0x00000000100033b6        0x2 
+                0x0000000010003404       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010003404                vfctprintf
+ .text._exit    0x0000000010003424        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+                0x0000000010003424                _exit
+ .text.exit     0x0000000010003428        0x6 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+                0x0000000010003428                exit
+ *fill*         0x000000001000342e        0x2 
  .text.__assert_func
-                0x00000000100033b8       0x3c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
-                0x00000000100033b8                __assert_func
+                0x0000000010003430       0x3c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+                0x0000000010003430                __assert_func
  .text.runtime_init
-                0x00000000100033f4       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
-                0x00000000100033f4                runtime_init
+                0x000000001000346c       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+                0x000000001000346c                runtime_init
  .text.stdio_out_chars_no_crlf
-                0x000000001000341c        0xe CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
- *fill*         0x000000001000342a        0x2 
+                0x0000000010003494        0xe CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+ *fill*         0x00000000100034a2        0x2 
  .text.stdio_out_chars_crlf
-                0x000000001000342c       0x80 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+                0x00000000100034a4       0x80 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdio_stack_buffer_flush
-                0x00000000100034ac       0x44 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000010003524       0x44 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdio_buffered_printer
-                0x00000000100034f0       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000010003568       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
  .text.stdout_serialize_begin
-                0x0000000010003510       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010003510                stdout_serialize_begin
+                0x0000000010003588       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000010003588                stdout_serialize_begin
  .text.stdout_serialize_end
-                0x0000000010003540       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010003540                stdout_serialize_end
+                0x00000000100035b8       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+                0x00000000100035b8                stdout_serialize_end
  .text.stdio_put_string
-                0x0000000010003550       0x94 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010003550                stdio_put_string
+                0x00000000100035c8       0x94 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+                0x00000000100035c8                stdio_put_string
  .text.stdio_flush
-                0x00000000100035e4       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
-                0x00000000100035e4                stdio_flush
+                0x000000001000365c       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+                0x000000001000365c                stdio_flush
  .text.__wrap_puts
-                0x0000000010003604       0x1e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010003604                __wrap_puts
-                0x0000000010003604                stdio_puts
- *fill*         0x0000000010003622        0x2 
+                0x000000001000367c       0x1e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+                0x000000001000367c                __wrap_puts
+                0x000000001000367c                stdio_puts
+ *fill*         0x000000001000369a        0x2 
  .text.__wrap_vprintf
-                0x0000000010003624       0x40 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010003624                __wrap_vprintf
-                0x0000000010003624                stdio_vprintf
+                0x000000001000369c       0x40 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+                0x000000001000369c                __wrap_vprintf
+                0x000000001000369c                stdio_vprintf
  .text.__wrap_printf
-                0x0000000010003664       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010003664                stdio_printf
-                0x0000000010003664                __wrap_printf
+                0x00000000100036dc       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+                0x00000000100036dc                stdio_printf
+                0x00000000100036dc                __wrap_printf
  .text.spi_set_baudrate
-                0x000000001000367c       0xb4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
-                0x000000001000367c                spi_set_baudrate
+                0x00000000100036f4       0xb4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
+                0x00000000100036f4                spi_set_baudrate
  .text.spi_init
-                0x0000000010003730       0x8c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
-                0x0000000010003730                spi_init
- .text          0x00000000100037bc       0x5c /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
-                0x00000000100037bc                strlen
+                0x00000000100037a8       0x8c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
+                0x00000000100037a8                spi_init
+ .text          0x0000000010003834       0x5c /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
+                0x0000000010003834                strlen
  *(.fini)
- .fini          0x0000000010003818        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crti.o
-                0x0000000010003818                _fini
- *fill*         0x000000001000381c        0x4 
- .fini.__stub   0x0000000010003820       0x50 linker stubs
+ .fini          0x0000000010003890        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crti.o
+                0x0000000010003890                _fini
+ *fill*         0x0000000010003894        0x4 
+ .fini.__stub   0x0000000010003898       0x50 linker stubs
  *crtbegin.o(.ctors)
  *crtbegin?.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .ctors)
@@ -3253,205 +3238,205 @@ LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nof
  *(EXCLUDE_FILE(*crtend.o *crtend?.o) .dtors)
  *(SORT_BY_NAME(.dtors.*))
  *(.dtors)
-                0x0000000010003870                . = ALIGN (0x4)
-                0x0000000010003870                PROVIDE (__preinit_array_start = .)
+                0x00000000100038e8                . = ALIGN (0x4)
+                0x00000000100038e8                PROVIDE (__preinit_array_start = .)
  *(SORT_BY_NAME(.preinit_array.*))
  .preinit_array.00100
-                0x0000000010003870        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x0000000010003870                __pre_init_runtime_init_early_resets
+                0x00000000100038e8        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x00000000100038e8                __pre_init_runtime_init_early_resets
  .preinit_array.00101
-                0x0000000010003874        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x0000000010003874                __pre_init_runtime_init_usb_power_down
+                0x00000000100038ec        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x00000000100038ec                __pre_init_runtime_init_usb_power_down
  .preinit_array.00275
-                0x0000000010003878        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+                0x00000000100038f0        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
  .preinit_array.00300
-                0x000000001000387c        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x00000000100038f4        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
  .preinit_array.00350
-                0x0000000010003880        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x00000000100038f8        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
  .preinit_array.00350
-                0x0000000010003884        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
+                0x00000000100038fc        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
  .preinit_array.00500
-                0x0000000010003888        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x0000000010003888                __pre_init_runtime_init_clocks
+                0x0000000010003900        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x0000000010003900                __pre_init_runtime_init_clocks
  .preinit_array.00600
-                0x000000001000388c        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x000000001000388c                __pre_init_runtime_init_post_clock_resets
+                0x0000000010003904        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x0000000010003904                __pre_init_runtime_init_post_clock_resets
  .preinit_array.00700
-                0x0000000010003890        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x0000000010003890                __pre_init_runtime_init_rp2040_gpio_ie_disable
+                0x0000000010003908        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x0000000010003908                __pre_init_runtime_init_rp2040_gpio_ie_disable
  .preinit_array.01000
-                0x0000000010003894        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x0000000010003894                __pre_init_runtime_init_spin_locks_reset
+                0x000000001000390c        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x000000001000390c                __pre_init_runtime_init_spin_locks_reset
  .preinit_array.01100
-                0x0000000010003898        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
-                0x0000000010003898                __pre_init_runtime_init_mutex
+                0x0000000010003910        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
+                0x0000000010003910                __pre_init_runtime_init_mutex
  .preinit_array.10080
-                0x000000001000389c        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
-                0x000000001000389c                __pre_init_runtime_init_install_ram_vector_table
+                0x0000000010003914        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x0000000010003914                __pre_init_runtime_init_install_ram_vector_table
  .preinit_array.11000
-                0x00000000100038a0        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
-                0x00000000100038a0                __pre_init_runtime_init_default_alarm_pool
+                0x0000000010003918        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+                0x0000000010003918                __pre_init_runtime_init_default_alarm_pool
  .preinit_array.YYYYY
-                0x00000000100038a4        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
-                0x00000000100038a4                __pre_init_first_per_core_initializer
+                0x000000001000391c        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
+                0x000000001000391c                __pre_init_first_per_core_initializer
  .preinit_array.ZZZZZ.01200
-                0x00000000100038a8        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
-                0x00000000100038a8                __pre_init_runtime_init_per_core_irq_priorities
+                0x0000000010003920        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000010003920                __pre_init_runtime_init_per_core_irq_priorities
  *(.preinit_array)
-                0x00000000100038ac                PROVIDE (__preinit_array_end = .)
-                0x00000000100038ac                . = ALIGN (0x4)
-                0x00000000100038ac                PROVIDE (__init_array_start = .)
+                0x0000000010003924                PROVIDE (__preinit_array_end = .)
+                0x0000000010003924                . = ALIGN (0x4)
+                0x0000000010003924                PROVIDE (__init_array_start = .)
  *(SORT_BY_NAME(.init_array.*))
  *(.init_array)
- .init_array    0x00000000100038ac        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
-                0x00000000100038b0                PROVIDE (__init_array_end = .)
-                0x00000000100038b0                . = ALIGN (0x4)
-                0x00000000100038b0                PROVIDE (__fini_array_start = .)
+ .init_array    0x0000000010003924        0x4 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
+                0x0000000010003928                PROVIDE (__init_array_end = .)
+                0x0000000010003928                . = ALIGN (0x4)
+                0x0000000010003928                PROVIDE (__fini_array_start = .)
  *(SORT_BY_NAME(.fini_array.*))
  *(.fini_array)
-                0x00000000100038b0                PROVIDE (__fini_array_end = .)
+                0x0000000010003928                PROVIDE (__fini_array_end = .)
  *(.eh_frame*)
- .eh_frame      0x00000000100038b0        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
-                0x00000000100038b0                . = ALIGN (0x4)
+ .eh_frame      0x0000000010003928        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
+                0x0000000010003928                . = ALIGN (0x4)
 
-.glue_7         0x00000000100038b0        0x0
- .glue_7        0x00000000100038b0        0x0 linker stubs
+.glue_7         0x0000000010003928        0x0
+ .glue_7        0x0000000010003928        0x0 linker stubs
 
-.glue_7t        0x00000000100038b0        0x0
- .glue_7t       0x00000000100038b0        0x0 linker stubs
+.glue_7t        0x0000000010003928        0x0
+ .glue_7t       0x0000000010003928        0x0 linker stubs
 
-.vfp11_veneer   0x00000000100038b0        0x0
- .vfp11_veneer  0x00000000100038b0        0x0 linker stubs
+.vfp11_veneer   0x0000000010003928        0x0
+ .vfp11_veneer  0x0000000010003928        0x0 linker stubs
 
-.v4_bx          0x00000000100038b0        0x0
- .v4_bx         0x00000000100038b0        0x0 linker stubs
+.v4_bx          0x0000000010003928        0x0
+ .v4_bx         0x0000000010003928        0x0 linker stubs
 
-.iplt           0x00000000100038b0        0x0
- .iplt          0x00000000100038b0        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
+.iplt           0x0000000010003928        0x0
+ .iplt          0x0000000010003928        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
 
-.rodata         0x00000000100038b0      0x8d4
+.rodata         0x0000000010003928      0x8d4
  *(EXCLUDE_FILE(*libm.a: *libc.a:*lib_a-mem*.o *libgcc.a:) .rodata*)
  .rodata.panic.str1.4
-                0x00000000100038b0       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
- *fill*         0x00000000100038c2        0x2 
+                0x0000000010003928       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
+ *fill*         0x000000001000393a        0x2 
  .rodata.make_j_16.str1.4
-                0x00000000100038c4       0x84 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+                0x000000001000393c       0x84 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
  .rodata.irq_set_exclusive_handler.str1.4
-                0x0000000010003948       0x36 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
- *fill*         0x000000001000397e        0x2 
+                0x00000000100039c0       0x36 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+ *fill*         0x00000000100039f6        0x2 
  .rodata.__func__.6
-                0x0000000010003980       0x1a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
- *fill*         0x000000001000399a        0x2 
+                0x00000000100039f8       0x1a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+ *fill*         0x0000000010003a12        0x2 
  .rodata.runtime_init_mutex.str1.4
-                0x000000001000399c       0x6f CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
- *fill*         0x0000000010003a0b        0x1 
+                0x0000000010003a14       0x6f CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
+ *fill*         0x0000000010003a83        0x1 
  .rodata.str1.4
-                0x0000000010003a0c       0x51 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
- *fill*         0x0000000010003a5d        0x3 
+                0x0000000010003a84       0x51 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
+ *fill*         0x0000000010003ad5        0x3 
  .rodata.__func__.1
-                0x0000000010003a60        0xb CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
- *fill*         0x0000000010003a6b        0x1 
+                0x0000000010003ad8        0xb CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
+ *fill*         0x0000000010003ae3        0x1 
  .rodata.__func__.3
-                0x0000000010003a6c       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
+                0x0000000010003ae4       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
  .rodata.__func__.6
-                0x0000000010003a84       0x13 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
- *fill*         0x0000000010003a97        0x1 
+                0x0000000010003afc       0x13 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
+ *fill*         0x0000000010003b0f        0x1 
  .rodata.alarm_pool_irq_handler.str1.4
-                0x0000000010003a98       0x7a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
- *fill*         0x0000000010003b12        0x2 
+                0x0000000010003b10       0x7a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+ *fill*         0x0000000010003b8a        0x2 
  .rodata.alarm_pool_get_default.str1.4
-                0x0000000010003b14       0x21 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
- *fill*         0x0000000010003b35        0x3 
+                0x0000000010003b8c       0x21 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+ *fill*         0x0000000010003bad        0x3 
  .rodata.sleep_until.str1.4
-                0x0000000010003b38       0x4d CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
- *fill*         0x0000000010003b85        0x3 
+                0x0000000010003bb0       0x4d CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+ *fill*         0x0000000010003bfd        0x3 
  .rodata.__func__.1
-                0x0000000010003b88       0x17 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
- *fill*         0x0000000010003b9f        0x1 
+                0x0000000010003c00       0x17 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+ *fill*         0x0000000010003c17        0x1 
  .rodata.__func__.2
-                0x0000000010003ba0       0x17 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
- *fill*         0x0000000010003bb7        0x1 
+                0x0000000010003c18       0x17 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+ *fill*         0x0000000010003c2f        0x1 
  .rodata.timer_hardware_alarm_claim.str1.4
-                0x0000000010003bb8       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
- *fill*         0x0000000010003bda        0x2 
+                0x0000000010003c30       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
+ *fill*         0x0000000010003c52        0x2 
  .rodata.pll_init.str1.4
-                0x0000000010003bdc      0x128 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
+                0x0000000010003c54      0x128 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
  .rodata.__func__.0
-                0x0000000010003d04        0x9 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
- *fill*         0x0000000010003d0d        0x3 
+                0x0000000010003d7c        0x9 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
+ *fill*         0x0000000010003d85        0x3 
  .rodata.__aeabi_double_init.str1.4
-                0x0000000010003d10       0xaa CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
- *fill*         0x0000000010003dba        0x2 
+                0x0000000010003d88       0xaa CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+ *fill*         0x0000000010003e32        0x2 
  .rodata.__func__.0
-                0x0000000010003dbc       0x14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+                0x0000000010003e34       0x14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
  .rodata.__aeabi_float_init.str1.4
-                0x0000000010003dd0       0x98 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+                0x0000000010003e48       0x98 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
                                          0x9c (size before relaxing)
  .rodata.__func__.0
-                0x0000000010003e68       0x13 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
- *fill*         0x0000000010003e7b        0x1 
+                0x0000000010003ee0       0x13 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+ *fill*         0x0000000010003ef3        0x1 
  .rodata.str1.4
-                0x0000000010003e7c       0x34 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x0000000010003ef4       0x34 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_26
-                0x0000000010003eb0        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x0000000010003f28        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_34
-                0x0000000010003ebc        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x0000000010003f34        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_42
-                0x0000000010003ec8        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x0000000010003f40        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_48
-                0x0000000010003ed4        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x0000000010003f4c        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_54
-                0x0000000010003ee0        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x0000000010003f58        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata.__bi_84
-                0x0000000010003eec        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x0000000010003f64        0xc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .rodata._ftoa.str1.4
-                0x0000000010003ef8       0x15 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
- *fill*         0x0000000010003f0d        0x3 
+                0x0000000010003f70       0x15 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+ *fill*         0x0000000010003f85        0x3 
  .rodata._vsnprintf
-                0x0000000010003f10      0x1e0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010003f88      0x1e0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
  .rodata.pow10.0
-                0x00000000100040f0       0x50 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000010004168       0x50 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
  .rodata.__assert_func.str1.4
-                0x0000000010004140       0x3f CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+                0x00000000100041b8       0x3f CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
                                          0x43 (size before relaxing)
- *fill*         0x000000001000417f        0x1 
+ *fill*         0x00000000100041f7        0x1 
  .rodata.crlf_str.0
-                0x0000000010004180        0x2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
-                0x0000000010004184                . = ALIGN (0x4)
- *fill*         0x0000000010004182        0x2 
+                0x00000000100041f8        0x2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+                0x00000000100041fc                . = ALIGN (0x4)
+ *fill*         0x00000000100041fa        0x2 
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.flashdata*)))
-                0x0000000010004184                . = ALIGN (0x4)
+                0x00000000100041fc                . = ALIGN (0x4)
 
 .ARM.extab
  *(.ARM.extab* .gnu.linkonce.armextab.*)
-                0x0000000010004184                __exidx_start = .
+                0x00000000100041fc                __exidx_start = .
 
 .ARM.exidx
  *(.ARM.exidx* .gnu.linkonce.armexidx.*)
-                0x0000000010004184                __exidx_end = .
-                0x0000000010004184                . = ALIGN (0x4)
-                0x0000000010004184                __binary_info_start = .
+                0x00000000100041fc                __exidx_end = .
+                0x00000000100041fc                . = ALIGN (0x4)
+                0x00000000100041fc                __binary_info_start = .
 
-.binary_info    0x0000000010004184       0x18
+.binary_info    0x00000000100041fc       0x18
  *(.binary_info.keep.*)
  .binary_info.keep.__bi_ptr26
-                0x0000000010004184        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x00000000100041fc        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr34
-                0x0000000010004188        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x0000000010004200        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr42
-                0x000000001000418c        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x0000000010004204        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr48
-                0x0000000010004190        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x0000000010004208        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr54
-                0x0000000010004194        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x000000001000420c        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .binary_info.keep.__bi_ptr84
-                0x0000000010004198        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x0000000010004210        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  *(.binary_info.*)
-                0x000000001000419c                __binary_info_end = .
+                0x0000000010004214                __binary_info_end = .
 
-.rel.dyn        0x000000001000419c        0x0
- .rel.iplt      0x000000001000419c        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
-                0x000000001000419c                . = ALIGN (0x4)
+.rel.dyn        0x0000000010004214        0x0
+ .rel.iplt      0x0000000010004214        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
+                0x0000000010004214                . = ALIGN (0x4)
 
 .ram_vector_table
                 0x0000000020000000       0xc0
@@ -3465,7 +3450,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nof
                 0x00000000200000c0                . = ALIGN (0x4)
  *(.uninitialized_data*)
 
-.data           0x00000000200000c0      0x210 load address 0x000000001000419c
+.data           0x00000000200000c0      0x210 load address 0x0000000010004214
                 0x00000000200000c0                __data_start__ = .
  *(vtable)
  *(.time_critical*)
@@ -3525,23 +3510,23 @@ LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nof
                 0x00000000200002d0                . = ALIGN (0x4)
 
 .tm_clone_table
-                0x00000000200002d0        0x0 load address 0x00000000100043ac
+                0x00000000200002d0        0x0 load address 0x0000000010004424
  .tm_clone_table
                 0x00000000200002d0        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
  .tm_clone_table
                 0x00000000200002d0        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtend.o
 
-.igot.plt       0x00000000200002d0        0x0 load address 0x00000000100043ac
+.igot.plt       0x00000000200002d0        0x0 load address 0x0000000010004424
  .igot.plt      0x00000000200002d0        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
 
-.tdata          0x00000000200002d0        0x0 load address 0x00000000100043ac
+.tdata          0x00000000200002d0        0x0 load address 0x0000000010004424
                 0x00000000200002d0                . = ALIGN (0x4)
  *(.tdata .tdata.* .gnu.linkonce.td.*)
                 0x00000000200002d0                __tdata_end = .
                 0x00000000200002d0                PROVIDE (__data_end__ = .)
-                0x000000001000419c                __etext = LOADADDR (.data)
+                0x0000000010004214                __etext = LOADADDR (.data)
 
-.tbss           0x00000000200002d0        0x0 load address 0x00000000100043ac
+.tbss           0x00000000200002d0        0x0 load address 0x0000000010004424
                 0x00000000200002d0                . = ALIGN (0x4)
                 0x00000000200002d0                __bss_start__ = .
                 0x00000000200002d0                __tls_base = .
@@ -3549,57 +3534,58 @@ LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nof
  *(.tcommon)
                 0x00000000200002d0                __tls_end = .
 
-.bss            0x00000000200002d0      0x3ec load address 0x00000000100043ac
+.bss            0x00000000200002d0      0x3f4 load address 0x0000000010004424
                 0x00000000200002d0                . = ALIGN (0x4)
                 0x00000000200002d0                __tbss_end = .
  *(SORT_BY_ALIGNMENT(SORT_BY_NAME(.bss*)))
  .bss.default_alarm_pool_entries
                 0x00000000200002d0      0x180 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
  .bss           0x0000000020000450       0x1c /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
- .bss.buff      0x000000002000046c        0x4 CMakeFiles/pico-invrerter.dir/main.c.obj
+ .bss.buff      0x000000002000046c        0xa CMakeFiles/pico-invrerter.dir/main.c.obj
                 0x000000002000046c                buff
- .bss.claimed   0x0000000020000470        0x1 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
- *fill*         0x0000000020000471        0x3 
+ *fill*         0x0000000020000476        0x2 
+ .bss.claimed   0x0000000020000478        0x1 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
+ *fill*         0x0000000020000479        0x3 
  .bss.configured_freq
-                0x0000000020000474       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
- .bss.drivers   0x000000002000049c        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
- .bss.filter    0x00000000200004a0        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
- .bss.pools     0x00000000200004a4       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
- .bss.sd_table  0x00000000200004b4      0x100 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
-                0x00000000200004b4                sd_table
+                0x000000002000047c       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
+ .bss.drivers   0x00000000200004a4        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+ .bss.filter    0x00000000200004a8        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+ .bss.pools     0x00000000200004ac       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+ .bss.sd_table  0x00000000200004bc      0x100 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+                0x00000000200004bc                sd_table
  .bss.sf_clz_func
-                0x00000000200005b4        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
-                0x00000000200005b4                sf_clz_func
- .bss.sf_table  0x00000000200005b8      0x100 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
-                0x00000000200005b8                sf_table
+                0x00000000200005bc        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+                0x00000000200005bc                sf_clz_func
+ .bss.sf_table  0x00000000200005c0      0x100 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+                0x00000000200005c0                sf_table
  .bss.sleep_notifier
-                0x00000000200006b8        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+                0x00000000200006c0        0x4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
  *(COMMON)
-                0x00000000200006bc                . = ALIGN (0x4)
-                0x00000000200006bc                __bss_end__ = .
+                0x00000000200006c4                . = ALIGN (0x4)
+                0x00000000200006c4                __bss_end__ = .
 
-.heap           0x00000000200006bc    0x3f944 load address 0x00000000100043ac
-                0x00000000200006bc                __end__ = .
-                0x00000000200006bc                end = __end__
+.heap           0x00000000200006c4    0x3f93c load address 0x0000000010004424
+                0x00000000200006c4                __end__ = .
+                0x00000000200006c4                end = __end__
  *(.heap*)
- .heap          0x00000000200006bc      0x800 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
+ .heap          0x00000000200006c4      0x800 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
                 0x0000000020040000                . = (ORIGIN (RAM) + LENGTH (RAM))
- *fill*         0x0000000020000ebc    0x3f144 
+ *fill*         0x0000000020000ec4    0x3f13c 
                 0x0000000020040000                __HeapLimit = .
 
-.scratch_x      0x0000000020040000        0x0 load address 0x00000000100043ac
+.scratch_x      0x0000000020040000        0x0 load address 0x0000000010004424
                 0x0000000020040000                __scratch_x_start__ = .
  *(.scratch_x.*)
                 0x0000000020040000                . = ALIGN (0x4)
                 0x0000000020040000                __scratch_x_end__ = .
-                0x00000000100043ac                __scratch_x_source__ = LOADADDR (.scratch_x)
+                0x0000000010004424                __scratch_x_source__ = LOADADDR (.scratch_x)
 
-.scratch_y      0x0000000020041000        0x0 load address 0x00000000100043ac
+.scratch_y      0x0000000020041000        0x0 load address 0x0000000010004424
                 0x0000000020041000                __scratch_y_start__ = .
  *(.scratch_y.*)
                 0x0000000020041000                . = ALIGN (0x4)
                 0x0000000020041000                __scratch_y_end__ = .
-                0x00000000100043ac                __scratch_y_source__ = LOADADDR (.scratch_y)
+                0x0000000010004424                __scratch_y_source__ = LOADADDR (.scratch_y)
 
 .stack1_dummy   0x0000000020040000      0x800
  *(.stack1*)
@@ -3609,9 +3595,9 @@ LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nof
  *(.stack*)
  .stack         0x0000000020041000      0x800 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
 
-.flash_end      0x00000000100043ac        0x0
+.flash_end      0x0000000010004424        0x0
  *(.embedded_end_block*)
-                0x00000000100043ac                PROVIDE (__flash_binary_end = .)
+                0x0000000010004424                PROVIDE (__flash_binary_end = .)
                 0x0000000020040000                __StackLimit = (ORIGIN (RAM) + LENGTH (RAM))
                 0x0000000020041000                __StackOneTop = (ORIGIN (SCRATCH_X) + LENGTH (SCRATCH_X))
                 0x0000000020042000                __StackTop = (ORIGIN (SCRATCH_Y) + LENGTH (SCRATCH_Y))
@@ -3690,7 +3676,7 @@ LOAD CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_dm
 LOAD CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
 LOAD CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pio/pio.c.obj
 LOAD CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
-LOAD /tmp/ccDM1KQt.o
+LOAD /tmp/ccs97IYm.o
 LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libstdc++.a
 LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libm.a
 START GROUP
@@ -3761,41 +3747,43 @@ LOAD linker stubs
  .ARM.attributes
                 0x00000000000003f4       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
  .ARM.attributes
-                0x0000000000000420       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x0000000000000420       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
  .ARM.attributes
-                0x0000000000000442       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+                0x000000000000044c       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
  .ARM.attributes
-                0x0000000000000464       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
+                0x000000000000046e       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
  .ARM.attributes
-                0x0000000000000486       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+                0x0000000000000490       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
  .ARM.attributes
-                0x00000000000004b2       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
+                0x00000000000004b2       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
  .ARM.attributes
-                0x00000000000004d4       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
+                0x00000000000004de       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
  .ARM.attributes
-                0x0000000000000500       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x0000000000000500       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
  .ARM.attributes
-                0x0000000000000522       0x32 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x000000000000052c       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
  .ARM.attributes
-                0x0000000000000554       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+                0x000000000000054e       0x32 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .ARM.attributes
-                0x0000000000000580       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
+                0x0000000000000580       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
  .ARM.attributes
-                0x00000000000005a2       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+                0x00000000000005ac       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
  .ARM.attributes
-                0x00000000000005ce       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+                0x00000000000005ce       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
  .ARM.attributes
-                0x00000000000005fa       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
+                0x00000000000005fa       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
  .ARM.attributes
-                0x0000000000000626       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
+                0x0000000000000626       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
  .ARM.attributes
-                0x0000000000000652       0x22 /tmp/ccDM1KQt.o
+                0x0000000000000652       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
  .ARM.attributes
-                0x0000000000000674       0x1e /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
+                0x000000000000067e       0x22 /tmp/ccs97IYm.o
  .ARM.attributes
-                0x0000000000000692       0x2c /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
+                0x00000000000006a0       0x1e /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .ARM.attributes
-                0x00000000000006be       0x2c /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtend.o
+                0x00000000000006be       0x2c /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
+ .ARM.attributes
+                0x00000000000006ea       0x2c /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtend.o
 
 .comment        0x0000000000000000       0x33
  .comment       0x0000000000000000       0x33 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtbegin.o
@@ -3820,6 +3808,7 @@ LOAD linker stubs
  .comment       0x0000000000000033       0x34 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
  .comment       0x0000000000000033       0x34 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
  .comment       0x0000000000000033       0x34 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+ .comment       0x0000000000000033       0x34 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
  .comment       0x0000000000000033       0x34 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
  .comment       0x0000000000000033       0x34 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
  .comment       0x0000000000000033       0x34 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
@@ -3831,380 +3820,390 @@ LOAD linker stubs
  .comment       0x0000000000000033       0x34 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
  .comment       0x0000000000000033       0x34 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/crtend.o
 
-.debug_info     0x0000000000000000    0x17e7a
- .debug_info    0x0000000000000000     0x19b1 CMakeFiles/pico-invrerter.dir/main.c.obj
- .debug_info    0x00000000000019b1     0x1d26 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
- .debug_info    0x00000000000036d7      0x19c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
- .debug_info    0x0000000000003873      0x6ba CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
- .debug_info    0x0000000000003f2d      0x3f1 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
- .debug_info    0x000000000000431e      0x2d2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
- .debug_info    0x00000000000045f0     0x1fc2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
- .debug_info    0x00000000000065b2      0x1a4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
- .debug_info    0x0000000000006756     0x1f37 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
- .debug_info    0x000000000000868d     0x336f CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
- .debug_info    0x000000000000b9fc     0x194a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
- .debug_info    0x000000000000d346     0x14ca CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
- .debug_info    0x000000000000e810      0x64b CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
- .debug_info    0x000000000000ee5b      0x2ac CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
- .debug_info    0x000000000000f107      0x1c9 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
- .debug_info    0x000000000000f2d0      0x1a6 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
- .debug_info    0x000000000000f476      0x7cc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
- .debug_info    0x000000000000fc42      0x6e5 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
- .debug_info    0x0000000000010327       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
- .debug_info    0x0000000000010349      0x301 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
- .debug_info    0x000000000001064a       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
- .debug_info    0x000000000001066c       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
- .debug_info    0x000000000001068e      0x2b3 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
- .debug_info    0x0000000000010941       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
- .debug_info    0x0000000000010963       0x26 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
- .debug_info    0x0000000000010989       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
- .debug_info    0x00000000000109ab      0x2b9 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
- .debug_info    0x0000000000010c64       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
- .debug_info    0x0000000000010c86      0x54c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
- .debug_info    0x00000000000111d2       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
- .debug_info    0x00000000000111f4      0x29a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
- .debug_info    0x000000000001148e     0x1a46 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
- .debug_info    0x0000000000012ed4       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
- .debug_info    0x0000000000012ef6      0xbb4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
- .debug_info    0x0000000000013aaa     0x1520 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
- .debug_info    0x0000000000014fca     0x1a46 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
- .debug_info    0x0000000000016a10     0x1356 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
- .debug_info    0x0000000000017d66       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
- .debug_info    0x0000000000017d8c       0xee /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
+.debug_info     0x0000000000000000    0x1c67c
+ .debug_info    0x0000000000000000      0xc51 CMakeFiles/pico-invrerter.dir/main.c.obj
+ .debug_info    0x0000000000000c51     0x1d26 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
+ .debug_info    0x0000000000002977      0x19c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
+ .debug_info    0x0000000000002b13      0x6ba CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
+ .debug_info    0x00000000000031cd      0x3f1 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
+ .debug_info    0x00000000000035be      0x2d2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
+ .debug_info    0x0000000000003890     0x1fc2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+ .debug_info    0x0000000000005852      0x1a4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
+ .debug_info    0x00000000000059f6     0x1f37 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
+ .debug_info    0x000000000000792d     0x336f CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+ .debug_info    0x000000000000ac9c     0x194a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
+ .debug_info    0x000000000000c5e6     0x14ca CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
+ .debug_info    0x000000000000dab0      0x64b CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
+ .debug_info    0x000000000000e0fb      0x2ac CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
+ .debug_info    0x000000000000e3a7      0x1c9 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
+ .debug_info    0x000000000000e570      0x1a6 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
+ .debug_info    0x000000000000e716      0x7cc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+ .debug_info    0x000000000000eee2      0x6e5 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
+ .debug_info    0x000000000000f5c7       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+ .debug_info    0x000000000000f5e9      0x301 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
+ .debug_info    0x000000000000f8ea       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
+ .debug_info    0x000000000000f90c       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+ .debug_info    0x000000000000f92e      0x2b3 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+ .debug_info    0x000000000000fbe1     0x5562 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
+ .debug_info    0x0000000000015143       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+ .debug_info    0x0000000000015165       0x26 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+ .debug_info    0x000000000001518b       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
+ .debug_info    0x00000000000151ad      0x2b9 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+ .debug_info    0x0000000000015466       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
+ .debug_info    0x0000000000015488      0x54c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
+ .debug_info    0x00000000000159d4       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+ .debug_info    0x00000000000159f6      0x29a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+ .debug_info    0x0000000000015c90     0x1a46 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+ .debug_info    0x00000000000176d6       0x22 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
+ .debug_info    0x00000000000176f8      0xbb4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+ .debug_info    0x00000000000182ac     0x1520 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+ .debug_info    0x00000000000197cc     0x1a46 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
+ .debug_info    0x000000000001b212     0x1356 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
+ .debug_info    0x000000000001c568       0x26 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
+ .debug_info    0x000000000001c58e       0xee /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
 
-.debug_abbrev   0x0000000000000000     0x4ded
- .debug_abbrev  0x0000000000000000      0x437 CMakeFiles/pico-invrerter.dir/main.c.obj
- .debug_abbrev  0x0000000000000437      0x402 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
- .debug_abbrev  0x0000000000000839       0xf4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
- .debug_abbrev  0x000000000000092d      0x2d6 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
- .debug_abbrev  0x0000000000000c03      0x1df CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
- .debug_abbrev  0x0000000000000de2      0x1f0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
- .debug_abbrev  0x0000000000000fd2      0x58e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
- .debug_abbrev  0x0000000000001560      0x116 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
- .debug_abbrev  0x0000000000001676      0x3b6 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
- .debug_abbrev  0x0000000000001a2c      0x5b8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
- .debug_abbrev  0x0000000000001fe4      0x473 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
- .debug_abbrev  0x0000000000002457      0x3e8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
- .debug_abbrev  0x000000000000283f      0x21a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
- .debug_abbrev  0x0000000000002a59      0x14e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
- .debug_abbrev  0x0000000000002ba7      0x11a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
- .debug_abbrev  0x0000000000002cc1      0x11c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
- .debug_abbrev  0x0000000000002ddd      0x20c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
- .debug_abbrev  0x0000000000002fe9      0x266 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
- .debug_abbrev  0x000000000000324f       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
- .debug_abbrev  0x0000000000003261      0x177 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
- .debug_abbrev  0x00000000000033d8       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
- .debug_abbrev  0x00000000000033ea       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
- .debug_abbrev  0x00000000000033fc      0x166 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
- .debug_abbrev  0x0000000000003562       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
- .debug_abbrev  0x0000000000003574       0x14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
- .debug_abbrev  0x0000000000003588       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
- .debug_abbrev  0x000000000000359a      0x179 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
- .debug_abbrev  0x0000000000003713       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
- .debug_abbrev  0x0000000000003725      0x1b4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
- .debug_abbrev  0x00000000000038d9       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
- .debug_abbrev  0x00000000000038eb       0xad CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
- .debug_abbrev  0x0000000000003998      0x3a2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
- .debug_abbrev  0x0000000000003d3a       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
- .debug_abbrev  0x0000000000003d4c      0x33c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
- .debug_abbrev  0x0000000000004088      0x486 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
- .debug_abbrev  0x000000000000450e      0x51a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
- .debug_abbrev  0x0000000000004a28      0x322 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
- .debug_abbrev  0x0000000000004d4a       0x14 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
- .debug_abbrev  0x0000000000004d5e       0x8f /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
+.debug_abbrev   0x0000000000000000     0x4f25
+ .debug_abbrev  0x0000000000000000      0x28c CMakeFiles/pico-invrerter.dir/main.c.obj
+ .debug_abbrev  0x000000000000028c      0x402 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
+ .debug_abbrev  0x000000000000068e       0xf4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
+ .debug_abbrev  0x0000000000000782      0x2d6 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
+ .debug_abbrev  0x0000000000000a58      0x1df CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
+ .debug_abbrev  0x0000000000000c37      0x1f0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
+ .debug_abbrev  0x0000000000000e27      0x58e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+ .debug_abbrev  0x00000000000013b5      0x116 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
+ .debug_abbrev  0x00000000000014cb      0x3b6 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
+ .debug_abbrev  0x0000000000001881      0x5b8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+ .debug_abbrev  0x0000000000001e39      0x473 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
+ .debug_abbrev  0x00000000000022ac      0x3e8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
+ .debug_abbrev  0x0000000000002694      0x21a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
+ .debug_abbrev  0x00000000000028ae      0x14e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
+ .debug_abbrev  0x00000000000029fc      0x11a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
+ .debug_abbrev  0x0000000000002b16      0x11c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
+ .debug_abbrev  0x0000000000002c32      0x20c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+ .debug_abbrev  0x0000000000002e3e      0x266 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
+ .debug_abbrev  0x00000000000030a4       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+ .debug_abbrev  0x00000000000030b6      0x177 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
+ .debug_abbrev  0x000000000000322d       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
+ .debug_abbrev  0x000000000000323f       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+ .debug_abbrev  0x0000000000003251      0x166 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+ .debug_abbrev  0x00000000000033b7      0x2e3 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
+ .debug_abbrev  0x000000000000369a       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+ .debug_abbrev  0x00000000000036ac       0x14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+ .debug_abbrev  0x00000000000036c0       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
+ .debug_abbrev  0x00000000000036d2      0x179 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+ .debug_abbrev  0x000000000000384b       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
+ .debug_abbrev  0x000000000000385d      0x1b4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
+ .debug_abbrev  0x0000000000003a11       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+ .debug_abbrev  0x0000000000003a23       0xad CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+ .debug_abbrev  0x0000000000003ad0      0x3a2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+ .debug_abbrev  0x0000000000003e72       0x12 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
+ .debug_abbrev  0x0000000000003e84      0x33c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+ .debug_abbrev  0x00000000000041c0      0x486 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+ .debug_abbrev  0x0000000000004646      0x51a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
+ .debug_abbrev  0x0000000000004b60      0x322 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
+ .debug_abbrev  0x0000000000004e82       0x14 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
+ .debug_abbrev  0x0000000000004e96       0x8f /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
 
-.debug_loc      0x0000000000000000     0xe88d
- .debug_loc     0x0000000000000000      0x864 CMakeFiles/pico-invrerter.dir/main.c.obj
- .debug_loc     0x0000000000000864     0x15b8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
- .debug_loc     0x0000000000001e1c      0x45f CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
- .debug_loc     0x000000000000227b      0x13f CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
- .debug_loc     0x00000000000023ba       0xf4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
- .debug_loc     0x00000000000024ae     0x1441 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
- .debug_loc     0x00000000000038ef       0x60 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
- .debug_loc     0x000000000000394f     0x1418 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
- .debug_loc     0x0000000000004d67     0x244f CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
- .debug_loc     0x00000000000071b6      0xf46 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
- .debug_loc     0x00000000000080fc      0xe30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
- .debug_loc     0x0000000000008f2c      0x351 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
- .debug_loc     0x000000000000927d       0x57 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
- .debug_loc     0x00000000000092d4       0x71 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
- .debug_loc     0x0000000000009345       0x78 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
- .debug_loc     0x00000000000093bd      0x11c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
- .debug_loc     0x00000000000094d9       0xbf CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
- .debug_loc     0x0000000000009598      0x207 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
- .debug_loc     0x000000000000979f       0x8c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
- .debug_loc     0x000000000000982b       0x73 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
- .debug_loc     0x000000000000989e      0x313 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
- .debug_loc     0x0000000000009bb1     0x2095 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
- .debug_loc     0x000000000000bc46      0x5cf CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
- .debug_loc     0x000000000000c215      0xc2d CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
- .debug_loc     0x000000000000ce42      0xd94 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
- .debug_loc     0x000000000000dbd6      0xc27 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
- .debug_loc     0x000000000000e7fd       0x90 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
+.debug_loc      0x0000000000000000    0x16129
+ .debug_loc     0x0000000000000000      0x1e6 CMakeFiles/pico-invrerter.dir/main.c.obj
+ .debug_loc     0x00000000000001e6     0x15b8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
+ .debug_loc     0x000000000000179e      0x45f CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
+ .debug_loc     0x0000000000001bfd      0x13f CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
+ .debug_loc     0x0000000000001d3c       0xf4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
+ .debug_loc     0x0000000000001e30     0x1441 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+ .debug_loc     0x0000000000003271       0x60 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
+ .debug_loc     0x00000000000032d1     0x1418 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
+ .debug_loc     0x00000000000046e9     0x244f CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+ .debug_loc     0x0000000000006b38      0xf46 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
+ .debug_loc     0x0000000000007a7e      0xe30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
+ .debug_loc     0x00000000000088ae      0x351 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
+ .debug_loc     0x0000000000008bff       0x57 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
+ .debug_loc     0x0000000000008c56       0x71 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
+ .debug_loc     0x0000000000008cc7       0x78 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
+ .debug_loc     0x0000000000008d3f      0x11c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+ .debug_loc     0x0000000000008e5b       0xbf CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
+ .debug_loc     0x0000000000008f1a      0x207 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
+ .debug_loc     0x0000000000009121       0x8c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+ .debug_loc     0x00000000000091ad     0x7f1a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
+ .debug_loc     0x00000000000110c7       0x73 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+ .debug_loc     0x000000000001113a      0x313 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
+ .debug_loc     0x000000000001144d     0x2095 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+ .debug_loc     0x00000000000134e2      0x5cf CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+ .debug_loc     0x0000000000013ab1      0xc2d CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+ .debug_loc     0x00000000000146de      0xd94 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
+ .debug_loc     0x0000000000015472      0xc27 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
+ .debug_loc     0x0000000000016099       0x90 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
 
-.debug_aranges  0x0000000000000000     0x1058
+.debug_aranges  0x0000000000000000     0x1180
  .debug_aranges
-                0x0000000000000000       0x30 CMakeFiles/pico-invrerter.dir/main.c.obj
+                0x0000000000000000       0x28 CMakeFiles/pico-invrerter.dir/main.c.obj
  .debug_aranges
-                0x0000000000000030      0x128 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
+                0x0000000000000028      0x128 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
  .debug_aranges
-                0x0000000000000158       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
+                0x0000000000000150       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
  .debug_aranges
-                0x0000000000000180       0x48 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
+                0x0000000000000178       0x48 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
  .debug_aranges
-                0x00000000000001c8       0x48 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
+                0x00000000000001c0       0x48 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
  .debug_aranges
-                0x0000000000000210       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
+                0x0000000000000208       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
  .debug_aranges
-                0x0000000000000238       0xd8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+                0x0000000000000230       0xd8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
  .debug_aranges
-                0x0000000000000310       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
+                0x0000000000000308       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
  .debug_aranges
-                0x0000000000000330       0x98 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
+                0x0000000000000328       0x98 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
  .debug_aranges
-                0x00000000000003c8       0xf0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+                0x00000000000003c0       0xf0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
  .debug_aranges
-                0x00000000000004b8       0xf0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
+                0x00000000000004b0       0xf0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
  .debug_aranges
-                0x00000000000005a8       0xa0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
+                0x00000000000005a0       0xa0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
  .debug_aranges
-                0x0000000000000648       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
+                0x0000000000000640       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
  .debug_aranges
-                0x0000000000000670       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
+                0x0000000000000668       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
  .debug_aranges
-                0x00000000000006a0       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
+                0x0000000000000698       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
  .debug_aranges
-                0x00000000000006d0       0x40 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
+                0x00000000000006c8       0x40 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
  .debug_aranges
-                0x0000000000000710       0x48 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+                0x0000000000000708       0x48 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
  .debug_aranges
-                0x0000000000000758       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
+                0x0000000000000750       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
  .debug_aranges
-                0x0000000000000780       0x60 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+                0x0000000000000778       0x60 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
  .debug_aranges
-                0x00000000000007e0       0x38 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
+                0x00000000000007d8       0x38 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
  .debug_aranges
-                0x0000000000000818       0x40 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
+                0x0000000000000810       0x40 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
  .debug_aranges
-                0x0000000000000858      0x140 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+                0x0000000000000850      0x140 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
  .debug_aranges
-                0x0000000000000998       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+                0x0000000000000990       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
  .debug_aranges
-                0x00000000000009b8       0xc8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+                0x00000000000009b0      0x130 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
  .debug_aranges
-                0x0000000000000a80       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+                0x0000000000000ae0       0xc8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
  .debug_aranges
-                0x0000000000000aa0      0x130 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
+                0x0000000000000ba8       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
  .debug_aranges
-                0x0000000000000bd0       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+                0x0000000000000bc8      0x130 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
  .debug_aranges
-                0x0000000000000bf0       0x50 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
+                0x0000000000000cf8       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
  .debug_aranges
-                0x0000000000000c40       0x38 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
+                0x0000000000000d18       0x50 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
  .debug_aranges
-                0x0000000000000c78       0x38 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+                0x0000000000000d68       0x38 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
  .debug_aranges
-                0x0000000000000cb0       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+                0x0000000000000da0       0x38 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
  .debug_aranges
-                0x0000000000000cc8       0x90 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+                0x0000000000000dd8       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
  .debug_aranges
-                0x0000000000000d58       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
+                0x0000000000000df0       0x90 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
  .debug_aranges
-                0x0000000000000d80       0xa0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+                0x0000000000000e80       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
  .debug_aranges
-                0x0000000000000e20       0xd0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+                0x0000000000000ea8       0xa0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
  .debug_aranges
-                0x0000000000000ef0       0xc0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
+                0x0000000000000f48       0xd0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
  .debug_aranges
-                0x0000000000000fb0       0x68 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
+                0x0000000000001018       0xc0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
  .debug_aranges
-                0x0000000000001018       0x20 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
+                0x00000000000010d8       0x68 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
  .debug_aranges
-                0x0000000000001038       0x20 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
+                0x0000000000001140       0x20 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
+ .debug_aranges
+                0x0000000000001160       0x20 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
 
-.debug_ranges   0x0000000000000000     0x3560
- .debug_ranges  0x0000000000000000      0x130 CMakeFiles/pico-invrerter.dir/main.c.obj
- .debug_ranges  0x0000000000000130      0x178 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
- .debug_ranges  0x00000000000002a8       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
- .debug_ranges  0x00000000000002c0       0xd8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
- .debug_ranges  0x0000000000000398       0x68 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
- .debug_ranges  0x0000000000000400       0x90 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
- .debug_ranges  0x0000000000000490      0x440 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
- .debug_ranges  0x00000000000008d0       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
- .debug_ranges  0x00000000000008e0      0xae0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
- .debug_ranges  0x00000000000013c0      0xaa0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
- .debug_ranges  0x0000000000001e60      0x428 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
- .debug_ranges  0x0000000000002288      0x170 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
- .debug_ranges  0x00000000000023f8       0x48 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
- .debug_ranges  0x0000000000002440       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
- .debug_ranges  0x0000000000002460       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
- .debug_ranges  0x0000000000002480       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
- .debug_ranges  0x00000000000024b0       0x88 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
- .debug_ranges  0x0000000000002538       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
- .debug_ranges  0x0000000000002568       0x58 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
- .debug_ranges  0x00000000000025c0       0x40 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
- .debug_ranges  0x0000000000002600       0x38 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
- .debug_ranges  0x0000000000002638      0x138 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
- .debug_ranges  0x0000000000002770       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
- .debug_ranges  0x00000000000027a0       0xc0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
- .debug_ranges  0x0000000000002860      0x128 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
- .debug_ranges  0x0000000000002988       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
- .debug_ranges  0x00000000000029b0       0x48 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
- .debug_ranges  0x00000000000029f8       0x70 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
- .debug_ranges  0x0000000000002a68       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
- .debug_ranges  0x0000000000002a98      0x108 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
- .debug_ranges  0x0000000000002ba0       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
- .debug_ranges  0x0000000000002bc0      0x118 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
- .debug_ranges  0x0000000000002cd8      0x238 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
- .debug_ranges  0x0000000000002f10      0x380 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
- .debug_ranges  0x0000000000003290      0x2d0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
+.debug_ranges   0x0000000000000000     0x3a60
+ .debug_ranges  0x0000000000000000       0x48 CMakeFiles/pico-invrerter.dir/main.c.obj
+ .debug_ranges  0x0000000000000048      0x178 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
+ .debug_ranges  0x00000000000001c0       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
+ .debug_ranges  0x00000000000001d8       0xd8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
+ .debug_ranges  0x00000000000002b0       0x68 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
+ .debug_ranges  0x0000000000000318       0x90 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
+ .debug_ranges  0x00000000000003a8      0x440 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+ .debug_ranges  0x00000000000007e8       0x10 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
+ .debug_ranges  0x00000000000007f8      0xae0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
+ .debug_ranges  0x00000000000012d8      0xaa0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+ .debug_ranges  0x0000000000001d78      0x428 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
+ .debug_ranges  0x00000000000021a0      0x170 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
+ .debug_ranges  0x0000000000002310       0x48 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
+ .debug_ranges  0x0000000000002358       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
+ .debug_ranges  0x0000000000002378       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
+ .debug_ranges  0x0000000000002398       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
+ .debug_ranges  0x00000000000023c8       0x88 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+ .debug_ranges  0x0000000000002450       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
+ .debug_ranges  0x0000000000002480       0x58 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+ .debug_ranges  0x00000000000024d8       0x40 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
+ .debug_ranges  0x0000000000002518       0x38 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
+ .debug_ranges  0x0000000000002550      0x138 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+ .debug_ranges  0x0000000000002688       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+ .debug_ranges  0x00000000000026b8      0x5e8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
+ .debug_ranges  0x0000000000002ca0       0xc0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+ .debug_ranges  0x0000000000002d60      0x128 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
+ .debug_ranges  0x0000000000002e88       0x28 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+ .debug_ranges  0x0000000000002eb0       0x48 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
+ .debug_ranges  0x0000000000002ef8       0x70 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
+ .debug_ranges  0x0000000000002f68       0x30 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+ .debug_ranges  0x0000000000002f98      0x108 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+ .debug_ranges  0x00000000000030a0       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
+ .debug_ranges  0x00000000000030c0      0x118 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+ .debug_ranges  0x00000000000031d8      0x238 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+ .debug_ranges  0x0000000000003410      0x380 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
+ .debug_ranges  0x0000000000003790      0x2d0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
 
-.debug_line     0x0000000000000000    0x10d8d
- .debug_line    0x0000000000000000      0x839 CMakeFiles/pico-invrerter.dir/main.c.obj
- .debug_line    0x0000000000000839      0xf24 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
- .debug_line    0x000000000000175d      0x1b5 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
- .debug_line    0x0000000000001912      0x61e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
- .debug_line    0x0000000000001f30      0x41e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
- .debug_line    0x000000000000234e      0x390 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
- .debug_line    0x00000000000026de     0x122a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
- .debug_line    0x0000000000003908      0x295 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
- .debug_line    0x0000000000003b9d     0x1265 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
- .debug_line    0x0000000000004e02     0x1d14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
- .debug_line    0x0000000000006b16      0xf63 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
- .debug_line    0x0000000000007a79      0xc1d CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
- .debug_line    0x0000000000008696      0x55e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
- .debug_line    0x0000000000008bf4      0x2d9 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
- .debug_line    0x0000000000008ecd      0x312 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
- .debug_line    0x00000000000091df      0x249 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
- .debug_line    0x0000000000009428      0x4fb CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
- .debug_line    0x0000000000009923      0x574 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
- .debug_line    0x0000000000009e97      0x14b CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
- .debug_line    0x0000000000009fe2      0x210 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
- .debug_line    0x000000000000a1f2      0x2f0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
- .debug_line    0x000000000000a4e2      0x441 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
- .debug_line    0x000000000000a923      0x39c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
- .debug_line    0x000000000000acbf      0x6bf CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
- .debug_line    0x000000000000b37e       0xae CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
- .debug_line    0x000000000000b42c      0x3fb CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
- .debug_line    0x000000000000b827      0x37d CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
- .debug_line    0x000000000000bba4      0x1e5 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
- .debug_line    0x000000000000bd89      0x45b CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
- .debug_line    0x000000000000c1e4       0xd8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
- .debug_line    0x000000000000c2bc      0x1a5 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
- .debug_line    0x000000000000c461     0x11df CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
- .debug_line    0x000000000000d640       0xdc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
- .debug_line    0x000000000000d71c      0x7e8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
- .debug_line    0x000000000000df04      0xe17 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
- .debug_line    0x000000000000ed1b     0x1055 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
- .debug_line    0x000000000000fd70      0xe4b CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
- .debug_line    0x0000000000010bbb       0x60 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
- .debug_line    0x0000000000010c1b      0x172 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
+.debug_line     0x0000000000000000    0x136c0
+ .debug_line    0x0000000000000000      0x559 CMakeFiles/pico-invrerter.dir/main.c.obj
+ .debug_line    0x0000000000000559      0xf24 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
+ .debug_line    0x000000000000147d      0x1b5 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
+ .debug_line    0x0000000000001632      0x61e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
+ .debug_line    0x0000000000001c50      0x41e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
+ .debug_line    0x000000000000206e      0x390 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
+ .debug_line    0x00000000000023fe     0x122a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+ .debug_line    0x0000000000003628      0x295 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
+ .debug_line    0x00000000000038bd     0x1265 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
+ .debug_line    0x0000000000004b22     0x1d14 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+ .debug_line    0x0000000000006836      0xf63 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
+ .debug_line    0x0000000000007799      0xc1d CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
+ .debug_line    0x00000000000083b6      0x55e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
+ .debug_line    0x0000000000008914      0x2d9 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
+ .debug_line    0x0000000000008bed      0x312 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
+ .debug_line    0x0000000000008eff      0x249 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
+ .debug_line    0x0000000000009148      0x4fb CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+ .debug_line    0x0000000000009643      0x574 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
+ .debug_line    0x0000000000009bb7      0x14b CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+ .debug_line    0x0000000000009d02      0x210 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
+ .debug_line    0x0000000000009f12      0x2f0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
+ .debug_line    0x000000000000a202      0x441 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+ .debug_line    0x000000000000a643      0x39c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+ .debug_line    0x000000000000a9df     0x2c13 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
+ .debug_line    0x000000000000d5f2      0x6bf CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+ .debug_line    0x000000000000dcb1       0xae CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+ .debug_line    0x000000000000dd5f      0x3fb CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
+ .debug_line    0x000000000000e15a      0x37d CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+ .debug_line    0x000000000000e4d7      0x1e5 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
+ .debug_line    0x000000000000e6bc      0x45b CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
+ .debug_line    0x000000000000eb17       0xd8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+ .debug_line    0x000000000000ebef      0x1a5 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+ .debug_line    0x000000000000ed94     0x11df CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+ .debug_line    0x000000000000ff73       0xdc CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
+ .debug_line    0x000000000001004f      0x7e8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+ .debug_line    0x0000000000010837      0xe17 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+ .debug_line    0x000000000001164e     0x1055 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
+ .debug_line    0x00000000000126a3      0xe4b CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
+ .debug_line    0x00000000000134ee       0x60 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
+ .debug_line    0x000000000001354e      0x172 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
 
-.debug_str      0x0000000000000000     0x510b
- .debug_str     0x0000000000000000      0x89e CMakeFiles/pico-invrerter.dir/main.c.obj
-                                        0x97c (size before relaxing)
- .debug_str     0x000000000000089e      0x8f4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
+.debug_str      0x0000000000000000     0x501c
+ .debug_str     0x0000000000000000      0x82e CMakeFiles/pico-invrerter.dir/main.c.obj
+                                        0x8a0 (size before relaxing)
+ .debug_str     0x000000000000082e      0x7ef CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
                                         0xc43 (size before relaxing)
- .debug_str     0x0000000000001192       0x98 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
+ .debug_str     0x000000000000101d       0x98 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
                                         0x1fc (size before relaxing)
- .debug_str     0x000000000000122a      0x1d7 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
+ .debug_str     0x00000000000010b5      0x1d7 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
                                         0x390 (size before relaxing)
- .debug_str     0x0000000000001401       0xe3 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
+ .debug_str     0x000000000000128c       0xe3 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
                                         0x32b (size before relaxing)
- .debug_str     0x00000000000014e4       0x79 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
+ .debug_str     0x000000000000136f       0x79 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
                                         0x25b (size before relaxing)
- .debug_str     0x000000000000155d      0x494 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+ .debug_str     0x00000000000013e8      0x494 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
                                         0x9da (size before relaxing)
- .debug_str     0x00000000000019f1       0x73 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
+ .debug_str     0x000000000000187c       0x73 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
                                         0x219 (size before relaxing)
- .debug_str     0x0000000000001a64      0x283 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
+ .debug_str     0x00000000000018ef      0x283 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
                                         0x786 (size before relaxing)
- .debug_str     0x0000000000001ce7      0x99f CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+ .debug_str     0x0000000000001b72      0x99f CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
                                        0x1116 (size before relaxing)
- .debug_str     0x0000000000002686      0x1f9 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
+ .debug_str     0x0000000000002511      0x1f9 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
                                         0x9c4 (size before relaxing)
- .debug_str     0x000000000000287f      0x492 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
+ .debug_str     0x000000000000270a      0x49b CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
                                         0x960 (size before relaxing)
- .debug_str     0x0000000000002d11      0x236 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
+ .debug_str     0x0000000000002ba5      0x236 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
                                         0x46e (size before relaxing)
- .debug_str     0x0000000000002f47       0xe0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
+ .debug_str     0x0000000000002ddb       0xe0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
                                         0x28f (size before relaxing)
- .debug_str     0x0000000000003027       0x8c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
+ .debug_str     0x0000000000002ebb       0x8c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
                                         0x236 (size before relaxing)
- .debug_str     0x00000000000030b3      0x118 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
+ .debug_str     0x0000000000002f47      0x118 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
                                         0x28c (size before relaxing)
- .debug_str     0x00000000000031cb      0x2b1 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+ .debug_str     0x000000000000305f      0x2c2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
                                         0x766 (size before relaxing)
- .debug_str     0x000000000000347c       0x79 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
+ .debug_str     0x0000000000003321       0x79 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
                                         0x45d (size before relaxing)
- .debug_str     0x00000000000034f5       0x6a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
+ .debug_str     0x000000000000339a       0x6a CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bit_ops/bit_ops_aeabi.S.obj
                                          0x89 (size before relaxing)
- .debug_str     0x000000000000355f      0x136 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
+ .debug_str     0x0000000000003404      0x136 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
                                         0x2b7 (size before relaxing)
- .debug_str     0x0000000000003695       0x61 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
+ .debug_str     0x000000000000353a       0x61 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_divider/divider_hardware.S.obj
                                          0x8c (size before relaxing)
- .debug_str     0x00000000000036f6       0x63 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
+ .debug_str     0x000000000000359b       0x63 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_aeabi_rp2040.S.obj
                                          0x8e (size before relaxing)
- .debug_str     0x0000000000003759       0xd2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+ .debug_str     0x00000000000035fe       0xd2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
                                         0x2a5 (size before relaxing)
- .debug_str     0x000000000000382b       0x69 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
+ .debug_str     0x00000000000036d0      0x333 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
+                                        0x506 (size before relaxing)
+ .debug_str     0x0000000000003a03       0x69 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_v1_rom_shim_rp2040.S.obj
                                          0x94 (size before relaxing)
- .debug_str     0x0000000000003894       0x67 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
+ .debug_str     0x0000000000003a6c       0x67 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_int64_ops/pico_int64_ops_aeabi.S.obj
                                          0x92 (size before relaxing)
- .debug_str     0x00000000000038fb       0x61 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
+ .debug_str     0x0000000000003ad3       0x61 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_aeabi_rp2040.S.obj
                                          0x8c (size before relaxing)
- .debug_str     0x000000000000395c       0xa9 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+ .debug_str     0x0000000000003b34       0xa9 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
                                         0x2aa (size before relaxing)
- .debug_str     0x0000000000003a05       0x67 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
+ .debug_str     0x0000000000003bdd       0x67 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_v1_rom_shim_rp2040.S.obj
                                          0x92 (size before relaxing)
- .debug_str     0x0000000000003a6c       0xea CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
+ .debug_str     0x0000000000003c44       0xea CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
                                         0x40b (size before relaxing)
- .debug_str     0x0000000000003b56       0x5e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
+ .debug_str     0x0000000000003d2e       0x5e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_mem_ops/mem_ops_aeabi.S.obj
                                          0x89 (size before relaxing)
- .debug_str     0x0000000000003bb4      0x226 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
+ .debug_str     0x0000000000003d8c      0x226 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_standard_binary_info/standard_binary_info.c.obj
                                         0x3a7 (size before relaxing)
- .debug_str     0x0000000000003dda      0x245 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+ .debug_str     0x0000000000003fb2      0x1f9 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
                                         0x483 (size before relaxing)
- .debug_str     0x000000000000401f       0x52 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
+ .debug_str     0x00000000000041ab       0x52 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_crt0/crt0.S.obj
                                          0x7d (size before relaxing)
- .debug_str     0x0000000000004071      0x311 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+ .debug_str     0x00000000000041fd      0x318 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
                                         0x749 (size before relaxing)
- .debug_str     0x0000000000004382      0x5b2 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+ .debug_str     0x0000000000004515      0x330 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
                                         0xd96 (size before relaxing)
- .debug_str     0x0000000000004934      0x47c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
+ .debug_str     0x0000000000004845      0x47c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
                                         0xc56 (size before relaxing)
- .debug_str     0x0000000000004db0      0x199 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
+ .debug_str     0x0000000000004cc1      0x199 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
                                         0x728 (size before relaxing)
- .debug_str     0x0000000000004f49       0xa6 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
- .debug_str     0x0000000000004fef      0x11c /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
+ .debug_str     0x0000000000004e5a       0xa6 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
+ .debug_str     0x0000000000004f00      0x11c /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
                                         0x1c5 (size before relaxing)
 
-.debug_frame    0x0000000000000000     0x1d94
- .debug_frame   0x0000000000000000       0x74 CMakeFiles/pico-invrerter.dir/main.c.obj
- .debug_frame   0x0000000000000074      0x304 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
- .debug_frame   0x0000000000000378       0x44 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
- .debug_frame   0x00000000000003bc       0x9c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
- .debug_frame   0x0000000000000458       0x9c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
- .debug_frame   0x00000000000004f4       0x38 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
- .debug_frame   0x000000000000052c      0x240 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
- .debug_frame   0x000000000000076c       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
- .debug_frame   0x000000000000078c      0x1c8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
- .debug_frame   0x0000000000000954      0x2d4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
- .debug_frame   0x0000000000000c28      0x2a8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
- .debug_frame   0x0000000000000ed0      0x204 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
- .debug_frame   0x00000000000010d4       0x44 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
- .debug_frame   0x0000000000001118       0x40 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
- .debug_frame   0x0000000000001158       0x40 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
- .debug_frame   0x0000000000001198       0x80 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
- .debug_frame   0x0000000000001218       0x84 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
- .debug_frame   0x000000000000129c       0x48 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
- .debug_frame   0x00000000000012e4       0x80 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
- .debug_frame   0x0000000000001364       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
- .debug_frame   0x0000000000001390       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
- .debug_frame   0x00000000000013bc       0x84 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
- .debug_frame   0x0000000000001440      0x1f8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
- .debug_frame   0x0000000000001638      0x174 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
- .debug_frame   0x00000000000017ac      0x274 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
- .debug_frame   0x0000000000001a20      0x218 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
- .debug_frame   0x0000000000001c38      0x134 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
- .debug_frame   0x0000000000001d6c       0x28 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
+.debug_frame    0x0000000000000000     0x21a8
+ .debug_frame   0x0000000000000000       0x48 CMakeFiles/pico-invrerter.dir/main.c.obj
+ .debug_frame   0x0000000000000048      0x304 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_gpio/gpio.c.obj
+ .debug_frame   0x000000000000034c       0x44 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_platform_panic/panic.c.obj
+ .debug_frame   0x0000000000000390       0x9c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/hardware_claim/claim.c.obj
+ .debug_frame   0x000000000000042c       0x9c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync/sync.c.obj
+ .debug_frame   0x00000000000004c8       0x38 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_sync_spin_lock/sync_spin_lock.c.obj
+ .debug_frame   0x0000000000000500      0x240 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_irq/irq.c.obj
+ .debug_frame   0x0000000000000740       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/lock_core.c.obj
+ .debug_frame   0x0000000000000760      0x1c8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_sync/mutex.c.obj
+ .debug_frame   0x0000000000000928      0x2d4 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/common/pico_time/time.c.obj
+ .debug_frame   0x0000000000000bfc      0x2a8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_timer/timer.c.obj
+ .debug_frame   0x0000000000000ea4      0x204 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_clocks/clocks.c.obj
+ .debug_frame   0x00000000000010a8       0x44 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pll/pll.c.obj
+ .debug_frame   0x00000000000010ec       0x40 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_ticks/ticks.c.obj
+ .debug_frame   0x000000000000112c       0x40 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_xosc/xosc.c.obj
+ .debug_frame   0x000000000000116c       0x80 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime/runtime.c.obj
+ .debug_frame   0x00000000000011ec       0x84 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init.c.obj
+ .debug_frame   0x0000000000001270       0x48 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_runtime_init/runtime_init_clocks.c.obj
+ .debug_frame   0x00000000000012b8       0x80 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_bootrom/bootrom.c.obj
+ .debug_frame   0x0000000000001338       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_init_rom_rp2040.c.obj
+ .debug_frame   0x0000000000001364      0x440 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_double/double_math.c.obj
+ .debug_frame   0x00000000000017a4       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_float/float_init_rom_rp2040.c.obj
+ .debug_frame   0x00000000000017d0       0x84 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_malloc/malloc.c.obj
+ .debug_frame   0x0000000000001854      0x1f8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_printf/printf.c.obj
+ .debug_frame   0x0000000000001a4c      0x174 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_clib_interface/newlib_interface.c.obj
+ .debug_frame   0x0000000000001bc0      0x274 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_stdio/stdio.c.obj
+ .debug_frame   0x0000000000001e34      0x218 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
+ .debug_frame   0x000000000000204c      0x134 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
+ .debug_frame   0x0000000000002180       0x28 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-strlen-stub.o)
