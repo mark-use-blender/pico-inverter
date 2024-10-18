@@ -28,7 +28,7 @@ uint16_t buff[5];
 void buffprep(int feq,int pha)
 {
     uint32_t binfeq = (int)(round((((2<<27))/(1000000))*(feq)));
-    uint16_t binpha = (int)(round(pha*0.33*4096));
+    uint16_t binpha = (int)(round((((pha)*(0.33))*(4096))));
     buff[0]=(0x2100);
     buff[1]=((0x4000)|((binfeq)&(0x3fff)));
     buff[2]=((0x4000)|((binfeq>>14)&(0x3fff)));  
