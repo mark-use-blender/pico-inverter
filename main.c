@@ -20,9 +20,19 @@ openocd -f interface/raspberrypi-swd.cfg -f target/rp2040.cfg -c "program pico-i
 #include "hardware/irq.h"
 #include "hardware/dma.h"
 #include "hardware/spi.h"
+#define uppin 14
+#define cenpin 15
+#define leftpin 16
+#define downpin 20
+#define rightpin 21
 int sinfeq = 30;
 uint16_t buff[5];
 uint16_t tbuff[5];
+
+void buffprepsn()
+{
+    buff[0]=(0x2100);
+}
 
 void buffprepsy()
 {
@@ -71,6 +81,8 @@ int main()
     gpio_set_dir(0,true);
     gpio_put(0,false);
 
+    
+
     gpio_init(1);
     gpio_set_dir(1,true);
     gpio_set_function( 2, GPIO_FUNC_SPI);
@@ -90,12 +102,22 @@ int main()
     spi_set_format(spi0,16,1,0,1);
 
     sleep_ms(1000);
-    wrtodds(sinfeq);
-    sleep_ms(500);
-    gpio_put(0,true);
+    buffprepsn();
+    gpio_clr_mask(0x00020022);
+    spi_write16_blocking(spi0,buff,1);
+    gpio_set_mask(0x00020022);
+    
 
     while (true)
     {
+        bool i1;
+        if (i1)
+        {
+            gpio_put(0,false);
+            wrtodds(sinfeq);
+            sleep_ms(500);
+            gpio_put(0,true);
+        }
         /*
         gpio_put(0,false);
         wrtodds(sinfeq);

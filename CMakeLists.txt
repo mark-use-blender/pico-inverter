@@ -7,6 +7,24 @@ project(pico-invrerter C CXX ASM)
 set(CMAKE_C_STANDARD 11)
 set(CMAKE_CXX_STANDARD 17)
 pico_sdk_init()
+# add compiled files subdirectory
+add_subdirectory(lib/Config)
+add_subdirectory(lib/Infrared)
+add_subdirectory(lib/OLED)
+add_subdirectory(lib/Icm20948)
+add_subdirectory(lib/LCD)
+add_subdirectory(lib/Fonts)
+add_subdirectory(lib/GUI)
+
+
+
+# add header file directory
+include_directories(./lib/Config)
+include_directories(./lib/GUI)
+include_directories(./lib/Icm20948)
+include_directories(./lib/LCD)
+include_directories(./lib/Infrared)
+include_directories(./lib/OLED)
 add_executable(pico-invrerter
   src/pico_servo.c
   src/pico_servo.h
@@ -46,6 +64,13 @@ target_link_libraries(
   pico_multicore
   hardware_pio
   hardware_spi
+  LCD
+  OLED
+  Infrared
+  Icm20948
+  GUI
+  Fonts
+  Config
 )
 
 
