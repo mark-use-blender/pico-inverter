@@ -3,6 +3,11 @@ openocd -f interface/raspberrypi-swd.cfg -f target/rp2040.cfg -c "program pico-i
 */
 
 
+#include "LCD_1in3.h"
+
+#include "DEV_Config.h"
+#include "GUI_Paint.h"
+
 
 #include <math.h>
 #include <stdio.h>
@@ -26,8 +31,36 @@ openocd -f interface/raspberrypi-swd.cfg -f target/rp2040.cfg -c "program pico-i
 #define downpin 20
 #define rightpin 21
 int sinfeq = 30;
+bool enpwr =0;
+bool dispwr = 1;
 uint16_t buff[5];
 uint16_t tbuff[5];
+UWORD *BlackImage;
+UDOUBLE Imagesize = LCD_1IN3_HEIGHT*LCD_1IN3_WIDTH*2;
+
+void core1()
+{
+    if (gpio_get(downpin)) sinfeq--;
+    if (gpio_get(uppin)) sinfeq++;
+    if (gpio_get(cenpin)) 
+    {
+        enpwr=dispwr;
+        dispwr=!dispwr;
+        crft_img();
+        LCD_1IN3_Display(BlackImage);
+        sleep_ms(1000);        
+    }
+    crft_img();
+    LCD_1IN3_Display(BlackImage);
+    DEV_Delay_ms(50);
+
+}
+void crft_img()
+{
+    Paint_Clear(WHITE);
+    Paint_DrawNum(0,0,sinfeq,&Font12,1,BLACK,WHITE);
+    Paint_DrawNum(0,20,!dispwr,&Font12,1,BLACK,WHITE);
+}
 
 void buffprepsn()
 {
@@ -77,11 +110,21 @@ void wrtodds(int sinfeq)
 
 int main()
 {   
+    DEV_Module_Init();
+    LCD_1IN3_Init(HORIZONTAL);
+    LCD_1IN3_Clear(WHITE);
+    multicore_launch_core1(core1);
+    
+    if((BlackImage = (UWORD *)malloc(Imagesize)) == NULL) {
+        printf("Failed to apply for black memory...\r\n");
+        exit(0);
+    }
+    // /*1.Create a new image cache named IMAGE_RGB and fill it with white*/
+    Paint_NewImage((UBYTE *)BlackImage,LCD_1IN3.WIDTH,LCD_1IN3.HEIGHT, 0, WHITE);
+
     gpio_init(0);
     gpio_set_dir(0,true);
     gpio_put(0,false);
-
-    
 
     gpio_init(1);
     gpio_set_dir(1,true);
@@ -110,13 +153,19 @@ int main()
 
     while (true)
     {
-        bool i1;
-        if (i1)
+        if (enpwr)
         {
             gpio_put(0,false);
             wrtodds(sinfeq);
-            sleep_ms(500);
+            sleep_ms(100);
             gpio_put(0,true);
+            dispwr=0;
+            enpwr=0;
+        }
+        
+        if (dispwr)
+        {
+            gpio_put(0,false);
         }
         /*
         gpio_put(0,false);
@@ -125,15 +174,5 @@ int main()
         gpio_put(0,true);
         //*/
         tight_loop_contents();
-        
-        
     }
-
-
-
-
-
-
-
-
 }
