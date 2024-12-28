@@ -37,7 +37,12 @@ uint16_t buff[5];
 uint16_t tbuff[5];
 UWORD *BlackImage;
 UDOUBLE Imagesize = LCD_1IN3_HEIGHT*LCD_1IN3_WIDTH*2;
-
+void crft_img()
+{
+    Paint_Clear(WHITE);
+    Paint_DrawNum(0,0,sinfeq,&Font12,1,BLACK,WHITE);
+    Paint_DrawNum(0,20,!dispwr,&Font12,1,BLACK,WHITE);
+}
 void core1()
 {
     if (gpio_get(downpin)) sinfeq--;
@@ -55,12 +60,7 @@ void core1()
     DEV_Delay_ms(50);
 
 }
-void crft_img()
-{
-    Paint_Clear(WHITE);
-    Paint_DrawNum(0,0,sinfeq,&Font12,1,BLACK,WHITE);
-    Paint_DrawNum(0,20,!dispwr,&Font12,1,BLACK,WHITE);
-}
+
 
 void buffprepsn()
 {
