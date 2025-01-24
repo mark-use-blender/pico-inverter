@@ -51,3 +51,4 @@ build/*
 build*
 .profile
 build
+lcd/Pico_code/Pico_code/c/build
