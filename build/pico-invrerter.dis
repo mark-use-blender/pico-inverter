@@ -37,21 +37,21 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY
  16 .comment      00000033  00000000  00000000  00006b08  2**0
                   CONTENTS, READONLY
- 17 .debug_info   0001cc57  00000000  00000000  00006b3b  2**0
+ 17 .debug_info   0001cc33  00000000  00000000  00006b3b  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_abbrev 00004fb1  00000000  00000000  00023792  2**0
+ 18 .debug_abbrev 00004fb1  00000000  00000000  0002376e  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .debug_loc    00016426  00000000  00000000  00028743  2**0
+ 19 .debug_loc    00016426  00000000  00000000  0002871f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 20 .debug_aranges 00001190  00000000  00000000  0003eb70  2**3
+ 20 .debug_aranges 00001190  00000000  00000000  0003eb48  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_ranges 00003a70  00000000  00000000  0003fd00  2**3
+ 21 .debug_ranges 00003a70  00000000  00000000  0003fcd8  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 22 .debug_line   00013882  00000000  00000000  00043770  2**0
+ 22 .debug_line   000138bf  00000000  00000000  00043748  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 23 .debug_str    00004fd5  00000000  00000000  00056ff2  2**0
+ 23 .debug_str    00004fd1  00000000  00000000  00057007  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 24 .debug_frame  000021dc  00000000  00000000  0005bfc8  2**2
+ 24 .debug_frame  000021dc  00000000  00000000  0005bfd8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 /home/mark/pico-inverter/build/pico-invrerter.elf:     file format elf32-littlearm
