@@ -1912,9 +1912,56 @@ Discarded input sections
                 0x0000000000000000       0x42 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
  .time_critical.spi_read16_blocking
                 0x0000000000000000       0x3e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
- .text          0x0000000000000000        0x0 /tmp/ccaQIGqX.o
- .data          0x0000000000000000        0x0 /tmp/ccaQIGqX.o
- .bss           0x0000000000000000        0x0 /tmp/ccaQIGqX.o
+ .text          0x0000000000000000        0x0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .data          0x0000000000000000        0x0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .bss           0x0000000000000000        0x0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_write_blocking_internal
+                0x0000000000000000      0x158 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_read_blocking_internal
+                0x0000000000000000       0xf6 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_deinit
+                0x0000000000000000       0x20 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .rodata.i2c_set_baudrate.str1.4
+                0x0000000000000000       0x74 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_set_baudrate
+                0x0000000000000000       0xf0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_init
+                0x0000000000000000       0x6c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_set_slave_mode
+                0x0000000000000000       0x4c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_write_blocking
+                0x0000000000000000       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_write_blocking_until
+                0x0000000000000000       0x3e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_write_timeout_per_char_us
+                0x0000000000000000       0x3e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_read_blocking
+                0x0000000000000000       0x18 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_read_blocking_until
+                0x0000000000000000       0x3e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text.i2c_read_timeout_per_char_us
+                0x0000000000000000       0x3e CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .data.i2c0_inst
+                0x0000000000000000        0x8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .data.i2c1_inst
+                0x0000000000000000        0x8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .rodata.__func__.0
+                0x0000000000000000       0x11 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .debug_info    0x0000000000000000     0x19ec CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .debug_abbrev  0x0000000000000000      0x461 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .debug_loc     0x0000000000000000     0x1582 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .debug_aranges
+                0x0000000000000000       0x78 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .debug_ranges  0x0000000000000000      0x1e0 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .debug_line    0x0000000000000000      0xd33 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .debug_str     0x0000000000000000      0xfaa CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .comment       0x0000000000000000       0x34 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .debug_frame   0x0000000000000000      0x1a8 CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .ARM.attributes
+                0x0000000000000000       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+ .text          0x0000000000000000        0x0 /tmp/ccTCHYsc.o
+ .data          0x0000000000000000        0x0 /tmp/ccTCHYsc.o
+ .bss           0x0000000000000000        0x0 /tmp/ccTCHYsc.o
  .data          0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .bss           0x0000000000000000        0x0 /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .text          0x0000000000000000       0x10 /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libg.a(lib_a-atexit.o)
@@ -2789,7 +2836,7 @@ LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nof
 .boot2          0x0000000010000000      0x100
                 0x0000000010000000                __boot2_start__ = .
  *(.boot2)
- .boot2         0x0000000010000000      0x100 /tmp/ccaQIGqX.o
+ .boot2         0x0000000010000000      0x100 /tmp/ccTCHYsc.o
                 0x0000000010000100                __boot2_end__ = .
                 0x0000000000000001                ASSERT (((__boot2_end__ - __boot2_start__) == 0x100), ERROR: Pico second stage bootloader must be 256 bytes in size)
 
@@ -3682,7 +3729,15 @@ LOAD CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_dm
 LOAD CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/pico_multicore/multicore.c.obj
 LOAD CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_pio/pio.c.obj
 LOAD CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
-LOAD /tmp/ccaQIGqX.o
+LOAD CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_i2c/i2c.c.obj
+LOAD lcd/Pico_code/Pico_code/c/lib/LCD/libLCD.a
+LOAD lcd/Pico_code/Pico_code/c/lib/OLED/libOLED.a
+LOAD lcd/Pico_code/Pico_code/c/lib/Infrared/libInfrared.a
+LOAD lcd/Pico_code/Pico_code/c/lib/Icm20948/libIcm20948.a
+LOAD lcd/Pico_code/Pico_code/c/lib/GUI/libGUI.a
+LOAD lcd/Pico_code/Pico_code/c/lib/Fonts/libFonts.a
+LOAD lcd/Pico_code/Pico_code/c/lib/Config/libConfig.a
+LOAD /tmp/ccTCHYsc.o
 LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libstdc++.a
 LOAD /usr/lib/gcc/arm-none-eabi/10.3.1/../../../arm-none-eabi/lib/thumb/v6-m/nofp/libm.a
 START GROUP
@@ -3783,7 +3838,7 @@ LOAD linker stubs
  .ARM.attributes
                 0x0000000000000652       0x2c CMakeFiles/pico-invrerter.dir/_deps/pico_sdk-src/src/rp2_common/hardware_spi/spi.c.obj
  .ARM.attributes
-                0x000000000000067e       0x22 /tmp/ccaQIGqX.o
+                0x000000000000067e       0x22 /tmp/ccTCHYsc.o
  .ARM.attributes
                 0x00000000000006a0       0x1e /usr/lib/gcc/arm-none-eabi/10.3.1/thumb/v6-m/nofp/libgcc.a(_dvmd_tls.o)
  .ARM.attributes

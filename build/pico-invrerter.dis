@@ -7190,7 +7190,7 @@ Disassembly of section .data:
 2000014a:	f38c 8810 	msr	PRIMASK, ip
 2000014e:	0038      	movs	r0, r7
 20000150:	4641      	mov	r1, r8
-20000152:	f000 f889 	bl	20000268 <__best_effort_wfe_or_timeout_veneer>
+20000152:	f000 f881 	bl	20000258 <__best_effort_wfe_or_timeout_veneer>
 20000156:	2800      	cmp	r0, #0
 20000158:	d0e5      	beq.n	20000126 <mutex_enter_block_until+0x1e>
 2000015a:	2000      	movs	r0, #0
@@ -7199,7 +7199,7 @@ Disassembly of section .data:
 20000160:	4a0a      	ldr	r2, [pc, #40]	; (2000018c <mutex_enter_block_until+0x84>)
 20000162:	21a6      	movs	r1, #166	; 0xa6
 20000164:	480a      	ldr	r0, [pc, #40]	; (20000190 <mutex_enter_block_until+0x88>)
-20000166:	f000 f877 	bl	20000258 <____assert_func_veneer>
+20000166:	f000 f87f 	bl	20000268 <____assert_func_veneer>
 2000016a:	464b      	mov	r3, r9
 2000016c:	7123      	strb	r3, [r4, #4]
 2000016e:	6823      	ldr	r3, [r4, #0]
@@ -7269,7 +7269,7 @@ Disassembly of section .data:
 200001fc:	4a03      	ldr	r2, [pc, #12]	; (2000020c <mutex_exit+0x44>)
 200001fe:	21d5      	movs	r1, #213	; 0xd5
 20000200:	4803      	ldr	r0, [pc, #12]	; (20000210 <mutex_exit+0x48>)
-20000202:	f000 f829 	bl	20000258 <____assert_func_veneer>
+20000202:	f000 f831 	bl	20000268 <____assert_func_veneer>
 20000206:	46c0      	nop			; (mov r8, r8)
 20000208:	10003a60 	.word	0x10003a60
 2000020c:	10003a98 	.word	0x10003a98
@@ -7313,23 +7313,23 @@ Disassembly of section .data:
 20000254:	0000      	movs	r0, r0
 	...
 
-20000258 <____assert_func_veneer>:
+20000258 <__best_effort_wfe_or_timeout_veneer>:
 20000258:	b401      	push	{r0}
-2000025a:	4802      	ldr	r0, [pc, #8]	; (20000264 <____assert_func_veneer+0xc>)
+2000025a:	4802      	ldr	r0, [pc, #8]	; (20000264 <__best_effort_wfe_or_timeout_veneer+0xc>)
 2000025c:	4684      	mov	ip, r0
 2000025e:	bc01      	pop	{r0}
 20000260:	4760      	bx	ip
 20000262:	bf00      	nop
-20000264:	100033f5 	.word	0x100033f5
+20000264:	10000dc1 	.word	0x10000dc1
 
-20000268 <__best_effort_wfe_or_timeout_veneer>:
+20000268 <____assert_func_veneer>:
 20000268:	b401      	push	{r0}
-2000026a:	4802      	ldr	r0, [pc, #8]	; (20000274 <__best_effort_wfe_or_timeout_veneer+0xc>)
+2000026a:	4802      	ldr	r0, [pc, #8]	; (20000274 <____assert_func_veneer+0xc>)
 2000026c:	4684      	mov	ip, r0
 2000026e:	bc01      	pop	{r0}
 20000270:	4760      	bx	ip
 20000272:	bf00      	nop
-20000274:	10000dc1 	.word	0x10000dc1
+20000274:	100033f5 	.word	0x100033f5
 
 20000278 <sinfeq>:
 20000278:	0000001e                                ....
