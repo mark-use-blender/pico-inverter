@@ -40,13 +40,13 @@ int step =1;
 void cre1()
 {
     DEV_Delay_ms(100);
-    printf("LCD_1in3_test Demo\r\n");
+    //printf("LCD_1in3_test Demo\r\n");
     if(DEV_Module_Init()!=0){
         return;
     }
     DEV_SET_PWM(50);
     /* LCD Init */
-    printf("1.3inch LCD demo...\r\n");
+    //printf("1.3inch LCD demo...\r\n");
     LCD_1IN3_Init(HORIZONTAL);
     LCD_1IN3_Clear(WHITE);
     
@@ -54,7 +54,7 @@ void cre1()
     UDOUBLE Imagesize = LCD_1IN3_HEIGHT*LCD_1IN3_WIDTH*2;
     UWORD *BlackImage;
     if((BlackImage = (UWORD *)malloc(Imagesize)) == NULL) {
-        printf("Failed to apply for black memory...\r\n");
+        //printf("Failed to apply for black memory...\r\n");
         exit(0);
     }
     // /*1.Create a new image cache named IMAGE_RGB and fill it with white*/
