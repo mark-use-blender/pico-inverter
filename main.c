@@ -97,10 +97,19 @@ int main()
     while (true)
     {
         /*
-        gpio_put(0,false);
-        wrtodds(sinfeq);
-        sleep_ms(500);
-        gpio_put(0,true);
+        if (enable|!stup)
+        {
+            gpio_put(0,false);
+            wrtodds(sinfeq);
+            sleep_ms(500);
+            gpio_put(0,true);
+            stup = true;
+        }
+        if (!enable|stup)
+        {
+            gpio_put(0,false);
+            stup = false;
+        }
         //*/
         tight_loop_contents();
         
