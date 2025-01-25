@@ -42,13 +42,13 @@ int step =1;
 void cre1()
 {
     DEV_Delay_ms(100);
-    printf("LCD_1in3_test Demo\r\n");
+    //printf("LCD_1in3_test Demo\r\n");
     if(DEV_Module_Init()!=0){
-        return;
+        exit(0);
     }
     DEV_SET_PWM(50);
     /* LCD Init */
-    printf("1.3inch LCD demo...\r\n");
+    //printf("1.3inch LCD demo...\r\n");
     LCD_1IN3_Init(HORIZONTAL);
     LCD_1IN3_Clear(WHITE);
     
@@ -56,14 +56,14 @@ void cre1()
     UDOUBLE Imagesize = LCD_1IN3_HEIGHT*LCD_1IN3_WIDTH*2;
     UWORD *BlackImage;
     if((BlackImage = (UWORD *)malloc(Imagesize)) == NULL) {
-        printf("Failed to apply for black memory...\r\n");
+        //printf("Failed to apply for black memory...\r\n");
         exit(0);
     }
     // /*1.Create a new image cache named IMAGE_RGB and fill it with white*/
     Paint_NewImage((UBYTE *)BlackImage,LCD_1IN3.WIDTH,LCD_1IN3.HEIGHT,180, WHITE);
     Paint_SetScale(65);
     Paint_Clear(WHITE);
-    Paint_SetRotate(ROTATE_0);
+    Paint_SetRotate(ROTATE_180);
     Paint_Clear(WHITE);
 
 
@@ -117,7 +117,7 @@ void cre1()
             if(DEV_Digital_Read(up ) == 0){
                 Paint_DrawRectangle(60, 60, 90, 90, 0xF800, DOT_PIXEL_2X2,DRAW_FILL_FULL);
                 LCD_1IN3_DisplayWindows(60, 60, 90, 90,BlackImage);
-                printf("gpio =%d\r\n",up);
+                //printf("gpio =%d\r\n",up);
                 if ((sinfeq+step)<1000) sinfeq=sinfeq+step;
                 else sinfeq = 1000;
                 DEV_Delay_ms(200);
@@ -130,7 +130,7 @@ void cre1()
             if(DEV_Digital_Read(down ) == 0){
                 Paint_DrawRectangle(60, 150, 90, 180, 0xF800, DOT_PIXEL_2X2,DRAW_FILL_FULL);
                 LCD_1IN3_DisplayWindows(60, 150, 90, 180,BlackImage);
-                printf("gpio =%d\r\n",down);
+                //printf("gpio =%d\r\n",down);
                 if ((sinfeq-step)>10) sinfeq=sinfeq-step;
                 else sinfeq=10;
                 DEV_Delay_ms(200);
@@ -143,7 +143,7 @@ void cre1()
             if(DEV_Digital_Read(left ) == 0){
                 Paint_DrawRectangle(15, 105, 45, 135, 0xF800, DOT_PIXEL_2X2,DRAW_FILL_FULL);
                 LCD_1IN3_DisplayWindows(15, 105, 45, 135,BlackImage);
-                printf("gpio =%d\r\n",left);
+                //printf("gpio =%d\r\n",left);
                 if (!bouncel)if (step<100) step=step*10;
                 bouncel=1;
             }
@@ -156,7 +156,7 @@ void cre1()
             if(DEV_Digital_Read(right ) == 0){
                 Paint_DrawRectangle(105, 105, 135, 135, 0xF800, DOT_PIXEL_2X2,DRAW_FILL_FULL);
                 LCD_1IN3_DisplayWindows(105, 105, 135, 135,BlackImage);
-                printf("gpio =%d\r\n",right);
+                //printf("gpio =%d\r\n",right);
                 if (!bouncer)if (step>1) step=step/10;
                 bouncer=1;
             }
@@ -169,7 +169,7 @@ void cre1()
         if(DEV_Digital_Read(ctrl ) == 0){
             Paint_DrawRectangle(60, 105, 90, 135, 0xF800, DOT_PIXEL_2X2,DRAW_FILL_FULL);
             LCD_1IN3_DisplayWindows(60, 105, 90, 135,BlackImage);
-            printf("gpio =%d\r\n",ctrl);
+            //printf("gpio =%d\r\n",ctrl);
             if (!bouncec)enable = !enable;
             bouncec=1;
         }
