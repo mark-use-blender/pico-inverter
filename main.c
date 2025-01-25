@@ -3,7 +3,6 @@ openocd -f interface/raspberrypi-swd.cfg -f target/rp2040.cfg -c "program pico-i
 */
 
 
-#include "LCD_1in3.h"
 
 #include <math.h>
 #include <stdio.h>
