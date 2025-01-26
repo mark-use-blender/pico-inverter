@@ -127,7 +127,7 @@ void cre1()
                 DEV_Delay_ms(100);
             }
             else{
-                Paint_DrawRectangle(60, 60, 90, 90, WHITE, DOT_PIXEL_2X2,DRAW_FILL_FULL);
+                // Paint_DrawRectangle(60, 60, 90, 90, WHITE, DOT_PIXEL_2X2,DRAW_FILL_FULL);
                 //LCD_1IN3_DisplayWindows(60, 60, 90, 90,BlackImage);
             }
 
@@ -140,7 +140,7 @@ void cre1()
                 DEV_Delay_ms(100);
             }
             else{
-                Paint_DrawRectangle(60, 150, 90, 180, WHITE, DOT_PIXEL_2X2,DRAW_FILL_FULL);
+                // Paint_DrawRectangle(60, 150, 90, 180, WHITE, DOT_PIXEL_2X2,DRAW_FILL_FULL);
                 //LCD_1IN3_DisplayWindows(60, 150, 90, 180,BlackImage);
             }
             
@@ -152,7 +152,7 @@ void cre1()
                 bouncel=1;
             }
             else{
-                Paint_DrawRectangle(15, 105, 45, 135, WHITE, DOT_PIXEL_2X2,DRAW_FILL_FULL);
+                // Paint_DrawRectangle(15, 105, 45, 135, WHITE, DOT_PIXEL_2X2,DRAW_FILL_FULL);
                 //LCD_1IN3_DisplayWindows(15, 105, 45, 135,BlackImage);
                 bouncel=0;
             }
@@ -165,7 +165,7 @@ void cre1()
                 bouncer=1;
             }
             else{
-                Paint_DrawRectangle(105, 105, 135, 135, WHITE, DOT_PIXEL_2X2,DRAW_FILL_FULL);
+                // Paint_DrawRectangle(105, 105, 135, 135, WHITE, DOT_PIXEL_2X2,DRAW_FILL_FULL);
                 //LCD_1IN3_DisplayWindows(105, 105, 135, 135,BlackImage);
                 bouncer=0;
             }
@@ -179,7 +179,7 @@ void cre1()
             bouncec=1;
         }
         else{
-            Paint_DrawRectangle(60, 105, 90, 135, WHITE, DOT_PIXEL_2X2,DRAW_FILL_FULL);
+            // Paint_DrawRectangle(60, 105, 90, 135, WHITE, DOT_PIXEL_2X2,DRAW_FILL_FULL);
             //LCD_1IN3_DisplayWindows(60, 105, 90, 135,BlackImage);
             bouncec=0;
         }
