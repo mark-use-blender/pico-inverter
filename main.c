@@ -27,10 +27,6 @@ openocd -f interface/raspberrypi-swd.cfg -f target/rp2040.cfg -c "program pico-i
 #include "Infrared.h"
 uint16_t buff[5];
 uint16_t tbuff[5];
-
-bool reserved_addr(uint8_t addr) {
-return (addr & 0x78) == 0 || (addr & 0x78) == 0x78;
-}
 int sinfeq = 30;
 bool enable =0;
 bool stup = 0;
@@ -38,6 +34,10 @@ bool bouncec =0;
 bool bouncel =0;
 bool bouncer =0;
 int step =1;
+bool reserved_addr(uint8_t addr) {
+return (addr & 0x78) == 0 || (addr & 0x78) == 0x78;
+}
+
 void cre1()
 {
     DEV_Delay_ms(100);
@@ -240,10 +240,11 @@ void wrtodds(int sinfeq)
 
 int main()
 {   
-    multicore_launch_core1(cre1);
+    
     gpio_init(0);
     gpio_set_dir(0,true);
-    gpio_put(0,false);
+    gpio_set_outover(0,GPIO_OVERRIDE_LOW);
+    //gpio_put(0,false);
 
     gpio_init(1);
     gpio_set_dir(1,true);
@@ -262,6 +263,8 @@ int main()
 
     spi_init(spi0,200000);
     spi_set_format(spi0,16,1,0,1);
+    multicore_launch_core1(cre1);
+    sleep_ms(500);
 /*
     sleep_ms(1000);
     wrtodds(sinfeq);
@@ -270,19 +273,39 @@ int main()
 //*/
     while (true)
     {
+        //gpio_set_outover(0,GPIO_OVERRIDE_LOW);
+        // gpio_put(0,false);
+
         //*
-        if (enable|!stup)
+        if ((enable)&&(!stup))
         {
-            gpio_put(0,false);
+            gpio_set_outover(0,GPIO_OVERRIDE_LOW);
+    //gpio_put(0,false);
             wrtodds(sinfeq);
             sleep_ms(500);
-            gpio_put(0,true);
+            gpio_set_outover(0,GPIO_OVERRIDE_HIGH);
+    //gpio_put(0,true);
             stup = true;
+            continue;
         }
-        if (!enable|stup)
+        else if ((!enable)&&(stup))
         {
-            gpio_put(0,false);
+            gpio_set_outover(0,GPIO_OVERRIDE_LOW);
+    //gpio_put(0,false);
             stup = false;
+            continue;
+        }
+        else if (enable&&stup)
+        {
+            gpio_set_outover(0,GPIO_OVERRIDE_HIGH);
+    //gpio_put(0,true);
+            continue;
+        }
+        else if ((!enable)&&(!stup))
+        {
+            gpio_set_outover(0,GPIO_OVERRIDE_LOW);
+    //gpio_put(0,false);
+            
         }
         //*/
         tight_loop_contents();
