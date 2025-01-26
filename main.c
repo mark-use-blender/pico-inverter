@@ -128,7 +128,7 @@ ctrl=15
             if(DEV_Digital_Read(up ) == 0){
                 Paint_DrawRectangle(60, 60, 90, 90, 0xF800, DOT_PIXEL_2X2,DRAW_FILL_FULL);
                 //LCD_1IN3_DisplayWindows(60, 60, 90, 90,BlackImage);
-                printf("gpio =%d\r\n",up);
+                // printf("gpio =%d\r\n",up);
                 if ((sinfeq+step)<1000) sinfeq=sinfeq+step;
                 else sinfeq = 1000;
                 DEV_Delay_ms(100);
@@ -141,7 +141,7 @@ ctrl=15
             if(DEV_Digital_Read(down ) == 0){
                 Paint_DrawRectangle(60, 150, 90, 180, 0xF800, DOT_PIXEL_2X2,DRAW_FILL_FULL);
                 //LCD_1IN3_DisplayWindows(60, 150, 90, 180,BlackImage);
-                printf("gpio =%d\r\n",down);
+                // printf("gpio =%d\r\n",down);
                 if ((sinfeq-step)>10) sinfeq=sinfeq-step;
                 else sinfeq=10;
                 DEV_Delay_ms(100);
@@ -154,7 +154,7 @@ ctrl=15
             if(DEV_Digital_Read(left ) == 0){
                 Paint_DrawRectangle(15, 105, 45, 135, 0xF800, DOT_PIXEL_2X2,DRAW_FILL_FULL);
                 //LCD_1IN3_DisplayWindows(15, 105, 45, 135,BlackImage);
-                printf("gpio =%d\r\n",left);
+                // printf("gpio =%d\r\n",left);
                 if (!bouncel)if (step<100) step=step*10;
                 bouncel=1;
             }
@@ -167,7 +167,7 @@ ctrl=15
             if(DEV_Digital_Read(right ) == 0){
                 Paint_DrawRectangle(105, 105, 135, 135, 0xF800, DOT_PIXEL_2X2,DRAW_FILL_FULL);
                 //LCD_1IN3_DisplayWindows(105, 105, 135, 135,BlackImage);
-                printf("gpio =%d\r\n",right);
+                // printf("gpio =%d\r\n",right);
                 if (!bouncer)if (step>1) step=step/10;
                 bouncer=1;
             }
@@ -181,7 +181,7 @@ ctrl=15
         if(DEV_Digital_Read(ctrl ) == 0){
             Paint_DrawRectangle(60, 105, 90, 135, 0xF800, DOT_PIXEL_2X2,DRAW_FILL_FULL);
             //LCD_1IN3_DisplayWindows(60, 105, 90, 135,BlackImage);
-            printf("gpio =%d\r\n",ctrl);
+            // printf("gpio =%d\r\n",ctrl);
             if (!bouncec)enable = !enable;
             bouncec=1;
         }
