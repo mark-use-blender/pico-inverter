@@ -169,7 +169,8 @@ int main()
 {   
     gpio_init(0);
     gpio_set_dir(0,true);
-    gpio_set_outover(0,GPIO_OVERRIDE_LOW);
+    // gpio_set_outover(0,GPIO_OVERRIDE_LOW);
+    gpio_put(0,false);
 
     gpio_init(1);
     gpio_set_dir(1,true);
@@ -200,27 +201,32 @@ int main()
     {
         if ((enable)&&(!stup))
         {
-            gpio_set_outover(0,GPIO_OVERRIDE_LOW);
+            // gpio_set_outover(0,GPIO_OVERRIDE_LOW);
+            gpio_put(0,false);
             wrtodds(sinfeq);
             sleep_ms(500);
-            gpio_set_outover(0,GPIO_OVERRIDE_HIGH);
+            // gpio_set_outover(0,GPIO_OVERRIDE_HIGH);
+            gpio_put(0,true);
             stup = true;
             continue;
         }
         else if ((!enable)&&(stup))
         {
-            gpio_set_outover(0,GPIO_OVERRIDE_LOW);
+            // gpio_set_outover(0,GPIO_OVERRIDE_LOW);
+            gpio_put(0,false);
             stup = false;
             continue;
         }
         else if (enable&&stup)
         {
-            gpio_set_outover(0,GPIO_OVERRIDE_HIGH);
+            // gpio_set_outover(0,GPIO_OVERRIDE_HIGH);
+            gpio_put(0,true);
             continue;
         }
         else if ((!enable)&&(!stup))
         {
-            gpio_set_outover(0,GPIO_OVERRIDE_LOW);
+            // gpio_set_outover(0,GPIO_OVERRIDE_LOW);
+            gpio_put(0,false);
         }
         
         tight_loop_contents();
