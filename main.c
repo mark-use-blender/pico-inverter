@@ -24,7 +24,7 @@ openocd -f interface/raspberrypi-swd.cfg -f target/rp2040.cfg -c "program pico-i
 #include "DEV_Config.h"
 #include "GUI_Paint.h"
 #include "ImageData.h"
-#include "Infrared.h"
+// #include "Infrared.h"
 uint16_t buff[5];
 uint16_t tbuff[5];
 int sinfeq = 30;
@@ -65,16 +65,16 @@ right=21
 ctrl=15
 */
 
-    uint8_t up = 20;
-	uint8_t down = 14;
-	uint8_t left = 21;
-	uint8_t right = 16;
-	uint8_t ctrl = 15;
-	SET_Infrared_PIN(up);
-    SET_Infrared_PIN(down);
-    SET_Infrared_PIN(left);
-    SET_Infrared_PIN(right);
-    SET_Infrared_PIN(ctrl);
+    uint16_t up = 20;
+	uint16_t down = 14;
+	uint16_t left = 21;
+	uint16_t right = 16;
+	uint16_t ctrl = 15;
+	DEV_KEY_Config(up);
+    DEV_KEY_Config(down);
+    DEV_KEY_Config(left);
+    DEV_KEY_Config(right);
+    DEV_KEY_Config(ctrl);
 
     Paint_Clear(WHITE);
     while(true)

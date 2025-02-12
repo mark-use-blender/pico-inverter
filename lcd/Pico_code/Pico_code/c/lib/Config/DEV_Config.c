@@ -64,24 +64,24 @@ void DEV_SPI_Write_nByte(uint8_t pData[], uint32_t Len)
  * I2C
 **/
 
-void DEV_I2C_Write(uint8_t addr, uint8_t reg, uint8_t Value)
-{
-    uint8_t data[2] = {reg, Value};
-    i2c_write_blocking(i2c1, addr, data, 2, false);
-}
+// void DEV_I2C_Write(uint8_t addr, uint8_t reg, uint8_t Value)
+// {
+//     uint8_t data[2] = {reg, Value};
+//     i2c_write_blocking(i2c1, addr, data, 2, false);
+// }
 
-void DEV_I2C_Write_nByte(uint8_t addr, uint8_t *pData, uint32_t Len)
-{
-    i2c_write_blocking(i2c1, addr, pData, Len, false);
-}
+// void DEV_I2C_Write_nByte(uint8_t addr, uint8_t *pData, uint32_t Len)
+// {
+//     i2c_write_blocking(i2c1, addr, pData, Len, false);
+// }
 
-uint8_t DEV_I2C_ReadByte(uint8_t addr, uint8_t reg)
-{
-    uint8_t buf;
-    i2c_write_blocking(i2c1,addr,&reg,1,true);
-    i2c_read_blocking(i2c1,addr,&buf,1,false);
-    return buf;
-}
+// uint8_t DEV_I2C_ReadByte(uint8_t addr, uint8_t reg)
+// {
+//     uint8_t buf;
+//     i2c_write_blocking(i2c1,addr,&reg,1,true);
+//     i2c_read_blocking(i2c1,addr,&buf,1,false);
+//     return buf;
+// }
 
 /**
  * GPIO Mode
@@ -145,7 +145,7 @@ Info:
 ******************************************************************************/
 UBYTE DEV_Module_Init(void)
 {
-    stdio_init_all();   
+    // stdio_init_all();   
     // SPI Config
     spi_init(SPI_PORT, 10000 * 1000);
     gpio_set_function(LCD_CLK_PIN, GPIO_FUNC_SPI);
@@ -164,12 +164,12 @@ UBYTE DEV_Module_Init(void)
     pwm_set_enabled(slice_num, true);
     
     
-    //I2C Config
-    i2c_init(i2c1,300*1000);
-    gpio_set_function(LCD_SDA_PIN,GPIO_FUNC_I2C);
-    gpio_set_function(LCD_SCL_PIN,GPIO_FUNC_I2C);
-    gpio_pull_up(LCD_SDA_PIN);
-    gpio_pull_up(LCD_SCL_PIN);
+    // //I2C Config
+    // i2c_init(i2c1,300*1000);
+    // gpio_set_function(LCD_SDA_PIN,GPIO_FUNC_I2C);
+    // gpio_set_function(LCD_SCL_PIN,GPIO_FUNC_I2C);
+    // gpio_pull_up(LCD_SDA_PIN);
+    // gpio_pull_up(LCD_SCL_PIN);
     
     printf("DEV_Module_Init OK \r\n");
     return 0;
