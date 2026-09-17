@@ -29,3 +29,10 @@ Instead of relying on the CPU to constantly toggle GPIO pins—which risks phase
 cmake -S . -B build
 cmake --build build
 ```
+
+
+### 📊 Hardware Signal Verification
+The following waveform capture demonstrates real-time signal generation and pulse train modulation captured on a digital oscilloscope from the physical hardware platform, running at a carrier frequency of ~4.64 kHz:
+
+<img width="4080" height="1840" alt="IMG_20241023_125229_1" src="https://github.com/user-attachments/assets/022155be-313a-4ab6-a534-5f575d00e7e7" />
+
